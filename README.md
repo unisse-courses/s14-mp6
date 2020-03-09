@@ -1,1 +1,5 @@
-# s14-mp6
+# DLSU Guide
+
+## Team Memers
+
+Leyesa, Jose Miguel
