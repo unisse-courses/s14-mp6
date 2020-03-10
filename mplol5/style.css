@@ -1,0 +1,424 @@
+header {
+  background-color: white;
+}
+
+body {
+  padding: 0px;
+  margin: 0 auto;
+  font-family: 'myriad-pro', sans-serif;
+  background-color: #f0f0f0;
+}
+
+footer {
+  padding: 0px;
+  margin: 0 auto;
+  background-color: black;
+}
+
+a {
+  padding: 0;
+  margin: 0;
+}
+
+.overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+}
+
+.overlay-content {
+  position: relative;
+  top: 46%;
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
+  margin-top: 30px;
+  margin: auto;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  cursor: pointer;
+  color: white;
+}
+
+.overlay .closebtn:hover {
+  color: #ccc;
+}
+
+.overlay input[type=text] {
+  padding: 15px;
+  font-size: 17px;
+  border: none;
+  float: left;
+  width: 70%;
+  background: white;
+}
+
+.overlay input[type=text]:hover {
+  background: #f1f1f1;
+}
+
+.overlay button {
+  float: left;
+  height: 100%;
+  width: 15%;
+  padding: 15px;
+  background-color: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.overlay button:hover {
+  background: #bbb;
+}
+
+#navbar {
+  padding-top: 22px;
+  position: fixed;
+  top: -70px;
+  width: 100%;
+  transition: top 0.3s;
+  z-index: 1000;
+  background-color: white;
+}
+
+.centered {
+  width: 70%;
+  max-width: 1128px;
+  margin: 0 auto;
+}
+
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
+.text-dark {
+  color: black;
+}
+
+.text-light {
+  color: white;
+}
+/*
+.wrapper {
+  height: auto;
+  width: 70%;
+  padding-left: 15%;
+  padding-right: 15%;
+  display: block;
+}
+*/
+
+.logo-wrapper {
+  height: 150px;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  background-color: #FFFFFF;
+}
+
+.logo-wrapper img {
+  height: 150px;
+}
+
+#header-top-wrapper {
+  height: auto;
+  width: 70%;
+  display: block;
+}
+
+#header-bottom-wrapper {
+  height: auto;
+  width: 70%;
+  max-width: 1128px;
+  margin: 0 auto;
+  padding-left: 15%;
+  padding-right: 15%;
+  display: block;
+}
+
+.nav-wrapper {
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+}
+
+.nav-wrapper img {
+  height: 40px;
+  margin-top: -10px;
+  overflow: visible;
+  float: left;
+}
+
+.nav-wrapper ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.nav-wrapper li {
+  float: left;
+}
+
+.nav-wrapper li a {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: myriad-pro, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+
+  display: block;
+  text-decoration: none;
+}
+
+.nav-text {
+  padding: 2px 16px;
+}
+
+/*
+.nav-wrapper li a:hover {
+
+}
+*/
+
+.nav-wrapper li a img {
+  padding-top: 9px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.nav-wrapper li:after{
+  content: ' ';
+  display: inline-block;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid black;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.nav-wrapper li:hover:after{
+  opacity: 1;
+}
+
+.line {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+#body-wrapper {
+  background-color: #F0F0F0;
+}
+
+.divider {
+  display: block;
+  text-transform: uppercase;
+  font-family: myriad-pro, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.divider p {
+  margin-left: 16px;
+}
+
+.image-dimmer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  box-shadow: 0 0 200px rgba(0,0,0,0.25) inset;
+  background-color: rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+.image-box {
+    height: 500px;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.image-box img {
+    max-width: 100%;
+    transition: all 0.5s;
+    display: block;
+    width: 100%;
+    height: 500px;
+    transform: scale(1);
+    object-fit: cover;
+}
+
+.image-box:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.image-box:hover img {
+    transform: scale(1.05);
+}
+
+.text-block {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 3;
+}
+
+.text-block h4 {
+  margin: 0px;
+  padding: 1px;
+  font-size: 24px;
+}
+
+.text-block p {
+  margin: 0px;
+  padding: 1px;
+  font-size: 14px;
+  text-align: justify;
+}
+
+.tag-wrapper {
+  position: absolute;
+  bottom: 16px;
+  top: 16px;
+  left: 16px;
+  color: white;
+  z-index: 3;
+}
+
+.tag-block {
+  text-decoration: none;
+}
+
+.tag-block p {
+  margin: 0px;
+  padding: 12px;
+  font-size: 16px;
+  color: white;
+  background-color: black;
+  border-radius: 10%;
+}
+
+.card-has-margin {
+  margin-right: 4.5%;
+  margin-bottom: 4.5%;
+}
+
+.card-wrapper {
+  width: 70%;
+  max-width: 1128px;
+  margin: 0 auto;
+}
+
+.card {
+  display: inline-block;
+  width: 30%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-img {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card-img img {
+  width: 100%;
+  transition: all 0.5s;
+  display: block;
+  width: 100%;
+  height: 300px;
+  transform: scale(1);
+  object-fit: cover;
+}
+
+.card-img:hover img {
+    transform: scale(1.05);
+}
+
+.card-container {
+  height: 126px;
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  color: black;
+  background-color: white;
+}
+
+.card-container h4 {
+  margin: 0px;
+  padding: 1px;
+  font-size: 24px;
+}
+
+.card-container p {
+  margin: 0px;
+  padding: 1px;
+  font-size: 14px;
+  text-align: justify;
+}
+
+.footer-wrapper {
+  margin: auto;
+  text-align: center;}
+
+.footer-wrapper img {
+  height: 80px;
+  margin-top: 1em;
+}
+
+.footer-text-left {
+  width: 50%;
+  text-align: left;
+  float: left;
+  color: white;
+  display: inline-block;
+  vertical-align:top;
+
+}
+
+.footer-text-right {
+  width: 50%;
+  text-align: right;
+  color: white;
+  display: inline-block;
+  vertical-align:top;
+}

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="styles\style.css">
+    <link rel="stylesheet" type="text/css" href="styles\navstyle.css">
+    <title>DLSU Guide</title>
+    <script>
+        /* Hidden Navigation Bar */
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 156 || document.documentElement.scrollTop > 156) {
+                document.getElementById("hidden-navbar").style.top = "0";
+            } else {
+                document.getElementById("hidden-navbar").style.top = "-70px";
+            }
+        }
+
+        /* Search Tool */
+        function openSearch() {
+          document.getElementById("searchOverlay").style.display = "block";
+        }
+
+        function closeSearch() {
+          document.getElementById("searchOverlay").style.display = "none";
+        }
+    </script>
+
+</head>
+
+<header>
+    <!-- Hidden Navigation Bar -->
+    <div id="hidden-navbar">
+        <div id="header-bottom-wrapper">
+            <div class="nav-wrapper light">
+              <a href="#">
+                <img src="img\logo_s.png">
+              </a>
+                <ul>
+                    <li><a href="#" class="nav-light nav-text">Home</a></li>
+                    <li><a href="#" class="nav-light nav-text">Classrooms</a></li>
+                    <li><a href="#" class="nav-light nav-text">Offices</a></li>
+                    <li><a href="#" class="nav-light nav-text">Food</a></li>
+                    <li><a href="#" class="nav-light nav-text">About</a></li>
+                    <li style="float:right"><a href="#" class="nav-light nav-text" onclick="openSearch()">Search</a></li>
+                    <li style="float:right"><a href="#" class="nav-light nav-text">Login</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-wrapper">
+      <a href="#">
+        <img src="img\logo.png">
+      </a>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div id="header-bottom-wrapper">
+        <div class="nav-wrapper light">
+            <ul>
+                <li><a href="#" class="nav-light nav-text">Home</a></li>
+                <li><a href="#" class="nav-light nav-text">Classrooms</a></li>
+                <li><a href="#" class="nav-light nav-text">Offices</a></li>
+                <li><a href="#" class="nav-light nav-text">Food</a></li>
+                <li><a href="#" class="nav-light nav-text">About</a></li>
+                <li style="float:right"><a href="#" class="nav-light nav-text" onclick="openSearch()">Search</a></li>
+                <li style="float:right"><a href="#" class="nav-light nav-text">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="line"></div>
+</header>
+
+<body>
+  <!-- Search Overlay -->
+  <div id="searchOverlay" class="overlay">
+    <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+    <div class="overlay-content">
+      <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit">O</button>
+      </form>
+    </div>
+  </div>
+
+    <!-- Divider -->
+    <div class="divider centered"><p>Featured</p></div>
+
+    <!-- Featured Article Splash -->
+    <div class="image-box centered">
+        <a href="#">
+            <!-- Dimmer + Vignette -->
+            <div class="image-dimmer"></div>
+            <!-- Featured Image  -->
+            <img src="https://source.unsplash.com/featured/?minimal,wallpaper,dark" />
+            <!-- Featured Text -->
+            <div class="text-block text-light">
+                <h4>Article Title</h4>
+                <p>March 11, 2020 • Hans Lao</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+            <!-- Tag -->
+            <div class="tag-wrapper">
+              <a href="#tag" class="tag-block"><p>Tag</p></a>
+            </div>
+        </a>
+    </div>
+
+    <!-- Divider -->
+    <div class="divider centered"><p>Latest</p></div>
+
+    <!-- Three-Column Article Cards-->
+    <div class="card-wrapper">
+
+        <!--CARD 1-->
+        <div class="card card-has-margin">
+            <a href="#">
+                <!-- Article Image -->
+                <div class="card-img">
+                    <!-- Dimmer + Vignette -->
+                    <div class="image-dimmer"></div>
+                    <img src="https://source.unsplash.com/featured/?minimal,wallpaper,dark">
+                    <!-- Tag -->
+                    <div class="tag-wrapper">
+                      <a href="#tag" class="tag-block"><p>Tag</p></a>
+                    </div>
+                </div>
+                <!-- Article Description -->
+                <div class="card-container">
+                    <div class="text-block text-dark">
+                        <h4>Article Title</h4>
+                        <p>March 11, 2020 • Hans Lao</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!--CARD 2-->
+        <div class="card card-has-margin">
+            <a href="#">
+                <!-- Article Image -->
+                <div class="card-img">
+                    <!-- Dimmer + Vignette -->
+                    <div class="image-dimmer"></div>
+                    <img src="https://source.unsplash.com/featured/?minimal,wallpaper,dark">
+                    <!-- Tag -->
+                    <div class="tag-wrapper">
+                      <a href="#tag" class="tag-block"><p>Tag</p></a>
+                    </div>
+                </div>
+                <!-- Article Description -->
+                <div class="card-container">
+                    <div class="text-block text-dark">
+                        <h4>Article Title</h4>
+                        <p>March 11, 2020 • Hans Lao</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!--CARD 3-->
+        <div class="card">
+            <a href="#">
+                <!-- Article Image -->
+                <div class="card-img">
+                    <!-- Dimmer + Vignette -->
+                    <div class="image-dimmer"></div>
+                    <img src="https://source.unsplash.com/featured/?minimal,wallpaper,dark">
+                    <!-- Tag -->
+                    <div class="tag-wrapper">
+                      <a href="#tag" class="tag-block"><p>Tag</p></a>
+                    </div>
+                </div>
+                <!-- Article Description -->
+                <div class="card-container">
+                    <div class="text-block text-dark">
+                        <h4>Article Title</h4>
+                        <p>March 11, 2020 • Hans Lao</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Three-Column Article Cards-->
+    <div class="card-wrapper">
+
+        <!--CARD 1-->
+        <div class="card card-has-margin">
+            <a href="#">
+                <!-- Article Image -->
+                <div class="card-img">
+                    <!-- Dimmer + Vignette -->
+                    <div class="image-dimmer"></div>
+                    <img src="https://source.unsplash.com/featured/?minimal,wallpaper,dark">
+                    <!-- Tag -->
+                    <div class="tag-wrapper">
+                      <a href="#tag" class="tag-block"><p>Tag</p></a>
+                    </div>
+                </div>
+                <!-- Article Description -->
+                <div class="card-container">
+                    <div class="text-block text-dark">
+                        <h4>Article Title</h4>
+                        <p>March 11, 2020 • Hans Lao</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!--CARD 2-->
+        <div class="card card-has-margin">
+            <a href="#">
+                <!-- Article Image -->
+                <div class="card-img">
+                    <!-- Dimmer + Vignette -->
+                    <div class="image-dimmer"></div>
+                    <img src="https://source.unsplash.com/featured/?minimal,wallpaper,dark">
+                    <!-- Tag -->
+                    <div class="tag-wrapper">
+                      <a href="#tag" class="tag-block"><p>Tag</p></a>
+                    </div>
+                </div>
+                <!-- Article Description -->
+                <div class="card-container">
+                    <div class="text-block text-dark">
+                        <h4>Article Title</h4>
+                        <p>March 11, 2020 • Hans Lao</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!--CARD 3-->
+        <div class="card">
+            <a href="#">
+                <!-- Article Image -->
+                <div class="card-img">
+                    <!-- Dimmer + Vignette -->
+                    <div class="image-dimmer"></div>
+                    <img src="https://source.unsplash.com/featured/?minimal,wallpaper,dark">
+                    <!-- Tag -->
+                    <div class="tag-wrapper">
+                      <a href="#tag" class="tag-block"><p>Tag</p></a>
+                    </div>
+                </div>
+                <!-- Article Description -->
+                <div class="card-container">
+                    <div class="text-block text-dark">
+                        <h4>Article Title</h4>
+                        <p>March 11, 2020 • Hans Lao</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</body>
+
+<footer>
+  <div class="footer-wrapper centered">
+    <a href="#">
+      <img src="img\logo_s.png">
+    </a>
+    <div class="footer-top">
+      <p class="footer-text-left">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+      <p class="footer-text-right">
+        Anton Sta. Ana • Miguel Leyesa • Hans Lao<br>
+        Version 0.5
+      </p>
+    </div>
+    <div class="footer-bottom">
+    </div>
+  </div>
+</footer>
+</html>
