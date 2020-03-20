@@ -1,0 +1,128 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="styles\navstyle.css">
+
+    <script>
+        /* Hidden Navigation Bar */
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 156 || document.documentElement.scrollTop > 156) {
+                document.getElementById("hidden-navbar").style.top = "0";
+            } else {
+                document.getElementById("hidden-navbar").style.top = "-70px";
+            }
+        }
+
+        /* Search Tool */
+        function openSearch() {
+          document.getElementById("searchOverlay").style.display = "block";
+        }
+
+        function closeSearch() {
+          document.getElementById("searchOverlay").style.display = "none";
+        }
+
+        /* Login & Register Overlay */
+        function openLogin() {
+          document.getElementById("loginOverlay").style.display = "block";
+        }
+
+        function closeLogin() {
+          document.getElementById("loginOverlay").style.display = "none";
+        }
+
+        /* Login & Register Toggle */
+        function toggleLogin() {
+          var x = document.getElementById("login");
+          if (x.style.display == "none") {
+            x.style.display = "block";
+            document.getElementById("register").style.display = "none";
+          } else {
+            x.style.display = "none";
+            document.getElementById("register").style.display = "block";
+          }
+        }
+    </script>
+</head>
+
+<header>
+    <!-- Hidden Navigation Bar -->
+    <div id="hidden-navbar">
+        <div id="header-bottom-wrapper">
+            <div class="nav-wrapper light">
+              <a href="/">
+                <img src="img/logo_s.png">
+              </a>
+                <ul>
+                  <li><a href="/" class="nav-light nav-text">Home</a></li>
+                  <li><a href="Classrooms" class="nav-light nav-text">Classrooms</a></li>
+                  <li><a href="Offices" class="nav-light nav-text">Offices</a></li>
+                  <li><a href="Food" class="nav-light nav-text">Food</a></li>
+                  <li><a href="About" class="nav-light nav-text">About</a></li>
+                  <li style="float:right"><a href="#" class="nav-light nav-text" onclick="openSearch()">Search</a></li>
+                  <li style="float:right"><a href="#" class="nav-light nav-text" onclick="openLogin()">Login</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="line"></div>
+    </div>
+
+    <!-- Logo -->
+    <div class="logo-wrapper">
+      <a href="/">
+        <img src="img\logo.png">
+      </a>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div id="header-bottom-wrapper">
+        <div class="nav-wrapper light">
+            <ul>
+              <li><a href="/" class="nav-light nav-text">Home</a></li>
+              <li><a href="Classrooms" class="nav-light nav-text">Classrooms</a></li>
+              <li><a href="Offices" class="nav-light nav-text">Offices</a></li>
+              <li><a href="Food" class="nav-light nav-text">Food</a></li>
+              <li><a href="About" class="nav-light nav-text">About</a></li>
+              <li style="float:right"><a href="#" class="nav-light nav-text" onclick="openSearch()">Search</a></li>
+              <li style="float:right"><a href="#" class="nav-light nav-text" onclick="openLogin()">Login</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="line"></div>
+</header>
+
+<!-- Search Overlay -->
+<div id="searchOverlay" class="overlay">
+<span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+<div class="overlay-content">
+    <form action="/action_page.php">
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit">O</button>
+    </form>
+</div>
+</div>
+
+<!-- Login Overlay -->
+<div id="loginOverlay" class="login-overlay">
+<span class="closebtn" onclick="closeLogin()" title="Close Overlay">×</span>
+<div class="login-page">
+    <div class="login-form">
+    <form class="register" id="register">
+        <input type="text" placeholder="User Name">
+        <input type="text" placeholder="Password">
+        <input type="text" placeholder="User Email">
+        <button type="button">Register</button>
+        <p class="msg"> Already Registered? <a href="#" onclick="toggleLogin()">Login</a></p>
+    </form>
+
+    <form class="login" id="login">
+        <input type="text" placeholder="User Name">
+        <input type="text" placeholder="Password">
+        <button type="button">Login</button>
+        <p class="msg"> Not Yet Registered? <a href="#" onclick="toggleLogin()">Register</a></p>
+    </form>
+    </div>
+</div>
+</div>

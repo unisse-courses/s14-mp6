@@ -1,0 +1,127 @@
+/* General Use */
+.nav-light {
+  background-color: white;
+  color: black;
+}
+
+.nav-dark {
+  background-color: black;
+  color: white;
+}
+
+.nav-top-padding {
+  padding-top: 22px
+}
+
+/* Hideen Navigation Bar */
+#hidden-navbar {
+  padding-top: 22px;
+  position: fixed;
+  top: -70px;
+  width: 100%;
+  transition: top 0.3s;
+  z-index: 1000;
+  background-color: white;
+}
+
+/* Fixed Navigation Bar */
+#fixed-navbar {
+  padding-top: 22px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  transition: top 0.3s;
+  z-index: 1000;
+  background-color: black;
+}
+
+/* Navigation Bar Wrappers */
+#header-bottom-wrapper {
+  height: auto;
+  width: 70%;
+  max-width: 1128px;
+  margin: 0 auto;
+  padding-left: 15%;
+  padding-right: 15%;
+  display: block;
+}
+
+.nav-wrapper {
+  width: 100%;
+  height: 40px;
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+}
+
+.nav-wrapper img {
+  height: 40px;
+  margin-top: -10px;
+  overflow: visible;
+  float: left;
+}
+
+.nav-wrapper ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.nav-wrapper li {
+  float: left;
+}
+
+.nav-wrapper li a {
+  cursor: pointer;
+  text-transform: uppercase;
+  font-family: myriad-pro, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  display: block;
+  text-decoration: none;
+}
+
+.nav-text {
+  padding: 2px 16px;
+}
+
+.nav-wrapper li a img {
+  padding-top: 9px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.nav-wrapper li:after{
+  content: ' ';
+  display: inline-block;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid black;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.dark .nav-wrapper li:after{
+  content: ' ';
+  display: inline-block;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+.nav-wrapper li:hover:after{
+  opacity: 1;
+}
+
+.line {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
