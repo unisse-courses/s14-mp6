@@ -1,0 +1,28 @@
+<!-- Divider -->
+<div class="divider centered"><p>Featured</p></div>
+
+<!-- Featured Article Splash -->
+<div class="image-box centered">
+    <a href="{{featured.key}}">
+        <!-- Dimmer + Vignette -->
+        <div class="image-dimmer"></div>
+        <!-- Featured Image  -->
+        <img src="img/articles/{{featured.key}}.{{featured.imgext}}"/>
+        <!-- Featured Text -->
+        <div class="text-block text-light">
+            <h4>{{featured.title}}</h4>
+            <p>{{featured.date}} • {{featured.author}}</p>
+            <p>{{featured.text_preview}}
+            </p>
+        </div>
+        <!-- Tag -->
+        <div class="tag-wrapper">
+            <a href="{{featured.category}}" class="tag-block"><p>{{featured.category}}</p></a>
+        </div>
+    </a>
+</div>
+
+<!-- Divider -->
+<div class="divider centered"><p>Latest</p></div>
+
+{{> feed}}

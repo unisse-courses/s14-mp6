@@ -1,0 +1,22 @@
+/* Article */
+.about-wrapper {
+  width: calc(70% - 34px);
+  max-width: 1128px;
+  margin: 0 auto;
+
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding: 16px;
+  margin: auto;
+}
+
+.about {
+  margin: auto;
+}
+
+.about p {
+  text-align: justify;
+  line-height: 26pt;
+  margin: 0;
+  margin-bottom: 14px;
+}
