@@ -8,16 +8,40 @@ const options = { useNewUrlParser: true,
 mongoose.connect(databaseURL, options);
 
 const articleSchema = new mongoose.Schema({
-    key: { type: String, required: true },
-    title: { type: String, required: true},
-    category: { type: String, required: true },
-    author: { type: String, required: true },
-    authoremail: {type: String, required: true},
-    date: { type: String, required: true },
-    imgext: { type: String, required: true },
-    tags: [{ type: String, required: false }],
-    text: [{ type: String, required: true }],
-    comments: [{ type: String, required: false }]
+    title: { 
+        type: String,
+        required: true
+    },
+
+    content: {
+        type: String,
+        required: true
+    },
+
+    category: {
+        type: String,
+        required: true 
+    },
+
+    author: {
+        type: String,
+        required: true
+    },
+
+    date: {
+        type: Date,
+        required: true
+    },
+
+    published: {
+        type: Boolean,
+        required: true
+    },
+
+    featured: {
+        type: Boolean,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('articles', articleSchema);

@@ -1,0 +1,34 @@
+<!-- Divider -->
+<div class="divider centered"><p>Featured</p></div>
+
+<div class="card-wrapper">
+<div class="feed">
+    {{#each featured}}<div class="card card-has-margin">
+        <a href="/article?={{_id}}">
+            <!-- Article Image -->
+            <div class="card-img">
+                <!-- Dimmer + Vignette -->
+                <div class="image-dimmer"></div>
+                <img src="img/articles/">
+                <!-- Tag -->
+                <div class="tag-wrapper">
+                    <a href="{{this.category}}" class="tag-block"><p>{{this.category}}</p></a>
+                </div>
+            </div>
+            <!-- Article Description -->
+            <div class="card-container">
+                <div class="text-block text-dark">
+                    <h4>{{this.title}}</h4>
+                    <p>{{dateFormat this.date "MMMM Do, YYYY"}} • {{this.author}}</p>
+                    <p>{{this.content}}...</p>
+                </div>
+            </div>
+        </a>
+    </div>{{/each}}
+</div>
+</div>
+
+<!-- Divider -->
+<div class="divider centered"><p>Latest</p></div>
+
+{{> feed}}

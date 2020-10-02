@@ -368,6 +368,10 @@ a {
   z-index: 3;
 }
 
+.tag-wrapper p {
+  text-transform: uppercase;
+}
+
 .tag-block {
   text-decoration: none;
 }

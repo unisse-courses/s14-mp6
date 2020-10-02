@@ -2,7 +2,7 @@
 <div class="card-wrapper">
 <div class="feed">
     {{#each articles}}<div class="card card-has-margin">
-        <a href="{{this.key}}">
+        <a href="/article?id={{_id}}">
             <!-- Article Image -->
             <div class="card-img">
                 <!-- Dimmer + Vignette -->
@@ -17,11 +17,12 @@
             <div class="card-container">
                 <div class="text-block text-dark">
                     <h4>{{this.title}}</h4>
-                    <p>{{this.date}} • {{this.author}}</p>
-                    <p>{{this.text_preview}}...</p>
+                    <p>{{dateFormat this.date "MMMM Do, YYYY"}} • {{this.author}}</p>
+                    <p>{{this.content}}...</p>
                 </div>
             </div>
         </a>
     </div>{{/each}}
 </div>
 </div>
+<br><br>

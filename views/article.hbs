@@ -1,1 +1,33 @@
-{{> article}}
+<head>
+    <link rel="stylesheet" type="text/css" href="/styles/articlestyle.css">
+</head>
+<!-- Featured Article Splash -->
+<div class="image-box">
+<a href="#">
+    <!-- Dimmer + Vignette -->
+    <div class="image-dimmer"></div>
+    <!-- Featured Image  -->
+    <img src="img/articles/">
+    <!-- Featured Text -->
+    <div class="text-block text-light centered">
+        <h4>{{article.title}}</h4>
+        <p>{{dateFormat this.date "MMMM Do, YYYY"}} • {{article.author}}</p>
+        <!--
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        -->
+    </div>
+    <!-- Tag -->
+    <div class="tag-wrapper">
+        <a href="{{article.category}}" class="tag-block"><p>{{article.category}}</p></a>
+    </div>
+</a>
+</div>
+
+<!-- Article -->
+<div class="article-wrapper">
+<div class="article">
+<p>
+    {{article.content}}
+</p>
+</div>
+</div>
