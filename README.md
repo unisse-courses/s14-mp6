@@ -1,9 +1,10 @@
 # DLSU Guide
 
-## Team Memers
+## Team Members
 
 Leyesa, Jose Miguel
 Sta. Ana, Jose Antonio
+Lao, Hans Dylan
 
 # setup
 1. run npm install
