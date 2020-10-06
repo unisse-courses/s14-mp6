@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 // import module `controller` from `../controllers/controller.js`
 const controller = require('../controller/controller.js');
 const articleController = require('../controller/articleController.js');
+const logInController = require('../controller/logInController.js');
 
 const app = express();
 
@@ -66,6 +67,7 @@ app.use((req, res, next) => {
 
 app.get('/', controller.getHome);
 app.get('/home', controller.getHome);
+app.post('/checkLogin', logInController.checkLogin);
 
 app.get('/about', controller.getAbout);
 

@@ -7,7 +7,7 @@ const controller = {
     
     getHome: function (req, res) {  
         Articles.countDocuments({ published: {$eq: true} }, function (err, count) {
-            var perPage = 1;
+            var perPage = 6;
             var page = req.query.page || 1;
             
             Articles
@@ -44,67 +44,130 @@ const controller = {
         });
     },
 
-    getAbout: function (req, res) {
-        res.render('about', {
-            layout: '/layouts/main',
-            title: 'About - DLSU Guide',
-        });
-    },
-
     getClassrooms: function (req, res) {
-        var query = {category: {$eq: 'classrooms'}};
-        database.findMany(Articles, query, {}, function (articleArray) {
-            articleArray.forEach(function(doc) {
-                doc.title = doc.title.substring(0, 20);
-                doc.author = doc.author.substring(0, 20);
-                doc.content = doc.content.substring(0, 70);
-            });
+        var type = 'Classrooms';
+        var link = 'classrooms';
 
-            res.render('category', {
-                layout: '/layouts/main',
-                title: 'Classrooms - DLSU Guide',
-                category: 'Classrooms',
-                description: 'Articles all about Classrooms',
-                articles: articleArray
+        var query = {
+            category: {$eq: link},
+            published: {$eq: true}
+        };
+
+        Articles.countDocuments(query, function (err, count) {
+            var perPage = 6;
+            var page = req.query.page || 1;
+            
+            Articles
+            .find(query)
+            .skip(perPage * page - perPage)
+            .limit(perPage)
+            .exec(function (err, articleArray) {
+                articleArray.forEach(function(doc) {
+                    doc.title = doc.title.substring(0, 20);
+                    doc.author = doc.author.substring(0, 20);
+                    doc.content = doc.content.substring(0, 70);
+                });
+                
+                res.render('category', {
+                    layout: '/layouts/main',
+                    title: type + ' - DLSU Guide',
+                    category: type,
+                    description: 'Articles all about ' + type,
+                    articles: articleArray,
+                    
+                    url: link,
+                    current: page,
+                    pages: Math.ceil(count / perPage),
+                    if_search: false,
+                });
             });
         });
     },
 
     getOffices: function (req, res) {
-        var query = {category: {$eq: 'offices'}};
-        database.findMany(Articles, query, {}, function (articleArray) {
-            articleArray.forEach(function(doc) {
-                doc.title = doc.title.substring(0, 20);
-                doc.author = doc.author.substring(0, 20);
-                doc.content = doc.content.substring(0, 70);
-            });
+        var type = 'Offices';
+        var link = 'offices';
 
-            res.render('category', {
-                layout: '/layouts/main',
-                title: 'Offices - DLSU Guide',
-                category: 'Offices',
-                description: 'Articles all about Offices',
-                articles: articleArray
+        var query = {
+            category: {$eq: link},
+            published: {$eq: true}
+        };
+
+        Articles.countDocuments(query, function (err, count) {
+            var perPage = 6;
+            var page = req.query.page || 1;
+            
+            Articles
+            .find(query)
+            .skip(perPage * page - perPage)
+            .limit(perPage)
+            .exec(function (err, articleArray) {
+                articleArray.forEach(function(doc) {
+                    doc.title = doc.title.substring(0, 20);
+                    doc.author = doc.author.substring(0, 20);
+                    doc.content = doc.content.substring(0, 70);
+                });
+                
+                res.render('category', {
+                    layout: '/layouts/main',
+                    title: type + ' - DLSU Guide',
+                    category: type,
+                    description: 'Articles all about ' + type,
+                    articles: articleArray,
+                    
+                    url: link,
+                    current: page,
+                    pages: Math.ceil(count / perPage),
+                    if_search: false,
+                });
             });
         });
     },
 
     getFood: function (req, res) {
-        var query = {category: {$eq: 'food'}};
-        database.findMany(Articles, query, {}, function (articleArray) {
-            articleArray.forEach(function(doc) {
-                doc.title = doc.title.substring(0, 20);
-                doc.author = doc.author.substring(0, 20);
-                doc.content = doc.content.substring(0, 70);
-            });
+        var type = 'Food';
+        var link = 'food';
 
-            res.render('category', {
-                layout: '/layouts/main',
-                title: 'Food - DLSU Guide',
-                category: 'Food',
-                description: 'Articles all about Food',
-                articles: articleArray
+        var query = {
+            category: {$eq: link},
+            published: {$eq: true}
+        };
+
+        Articles.countDocuments(query, function (err, count) {
+            var perPage = 6;
+            var page = req.query.page || 1;
+            
+            Articles
+            .find(query)
+            .skip(perPage * page - perPage)
+            .limit(perPage)
+            .exec(function (err, articleArray) {
+                articleArray.forEach(function(doc) {
+                    doc.title = doc.title.substring(0, 20);
+                    doc.author = doc.author.substring(0, 20);
+                    doc.content = doc.content.substring(0, 70);
+                });
+                
+                res.render('category', {
+                    layout: '/layouts/main',
+                    title: type + ' - DLSU Guide',
+                    category: type,
+                    description: 'Articles all about ' + type,
+                    articles: articleArray,
+                    
+                    url: link,
+                    current: page,
+                    pages: Math.ceil(count / perPage),
+                    if_search: false,
+                });
             });
+        });
+    },
+
+    getAbout: function (req, res) {
+        res.render('about', {
+            layout: '/layouts/main',
+            title: 'About - DLSU Guide',
         });
     },
 

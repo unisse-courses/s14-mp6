@@ -99,18 +99,18 @@
 <div class="login-page">
     <div class="login-form">
     <form class="register" id="register">
-        <input type="text" placeholder="User Name">
+        <input type="text" placeholder="Email">
         <input type="text" placeholder="Password">
-        <input type="text" placeholder="User Email">
         <button type="button">Register</button>
         <p class="msg"> Already Registered? <a href="#" onclick="toggleLogin()">Login</a></p>
     </form>
 
     <form class="login" id="login">
-        <input type="text" placeholder="User Name">
-        <input type="text" placeholder="Password">
-        <button type="button">Login</button>
+        <input id="loginemail" type="text" placeholder="Email">
+        <input id="lodinpassword" type="text" placeholder="Password">
+        <button id="loginsubmit" type="button">Login</button>
         <p class="msg"> Not Yet Registered? <a href="#" onclick="toggleLogin()">Register</a></p>
+        <p is="error" class="msg"></p>
     </form>
     </div>
 </div>
