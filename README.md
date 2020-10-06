@@ -5,7 +5,7 @@
 - Leyesa, Jose Miguel
 - Sta. Ana, Jose Antonio
 
-# setup
+### setup
 1. run ```npm install```
 2. run ```node addData``` to add data to the mongo database
 3. run ```node index```
