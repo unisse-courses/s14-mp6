@@ -63,7 +63,9 @@ app.use((req, res, next) => {
 });
 
 //pages
+
 app.get('/', controller.getHome);
+app.get('/home', controller.getHome);
 
 app.get('/about', controller.getAbout);
 
@@ -74,10 +76,10 @@ app.get('/food', controller.getFood);
 app.get('/article', articleController.findArticle);
 
 app.get('/404', controller.get404);
-
+/*
 app.use((req, res, next) => {
     res.status(404).redirect('404');
 });
-
+*/
 // enables to export app object when called in another .js file
 module.exports = app;

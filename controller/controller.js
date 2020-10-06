@@ -6,25 +6,39 @@ const Users = require('../models/users.js');
 const controller = {
     
     getHome: function (req, res) {  
-        database.findMany(Articles, {}, {}, function (articleArray) {
-            database.findMany(Articles, {featured: {$eq: true}}, {}, function (featuredArray) {
-                articleArray.forEach(function(doc) {
-                    doc.title = doc.title.substring(0, 20);
-                    doc.author = doc.author.substring(0, 20);
-                    doc.content = doc.content.substring(0, 70);
-                });
+        Articles.countDocuments({ published: {$eq: true} }, function (err, count) {
+            var perPage = 1;
+            var page = req.query.page || 1;
+            
+            Articles
+            .find( {published: {$eq: true} })
+            .skip(perPage * page - perPage)
+            .limit(perPage)
+            .exec(function (err, articleArray) {
+                database.findMany(Articles, {featured: {$eq: true}}, {}, function (featuredArray) {
+                    articleArray.forEach(function(doc) {
+                        doc.title = doc.title.substring(0, 20);
+                        doc.author = doc.author.substring(0, 20);
+                        doc.content = doc.content.substring(0, 70);
+                    });
 
-                featuredArray.forEach(function(doc) {
-                    doc.title = doc.title.substring(0, 20);
-                    doc.author = doc.author.substring(0, 20);
-                    doc.content = doc.content.substring(0, 70);
-                });
-    
-                res.render('home', {
-                    layout: '/layouts/main',
-                    title: 'Home - DLSU Guide',
-                    featured: featuredArray,
-                    articles: articleArray,
+                    featuredArray.forEach(function(doc) {
+                        doc.title = doc.title.substring(0, 20);
+                        doc.author = doc.author.substring(0, 20);
+                        doc.content = doc.content.substring(0, 70);
+                    });
+                    
+                    res.render('home', {
+                        layout: '/layouts/main',
+                        title: 'Home - DLSU Guide',
+                        featured: featuredArray,
+                        articles: articleArray,
+                        
+                        url: 'home',
+                        current: page,
+                        pages: Math.ceil(count / perPage),
+                        if_search: false,
+                    });
                 });
             });
         });
@@ -95,7 +109,10 @@ const controller = {
     },
 
     get404: function (req, res) {
-        res.render('404', {});
+        res.render('404', {
+            layout: 'layouts/main',
+            title: '404 Not Found - DLSU Guide'
+        });
     }
 }
 

@@ -25,6 +25,17 @@ const articleController = {
                 res.redirect('/404');
             }
         });
+    },
+
+    deleteArticle: function (req, res) {
+        var article_id = res.query.id;
+        var article_path; // add later
+        var article_details = {_id: ObjectID(article_id)};
+
+        //remove file here
+
+        database.deleteOne(Article, article_details);
+        //res.redirect('');
     }
 }
 

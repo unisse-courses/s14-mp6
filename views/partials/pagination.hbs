@@ -1,0 +1,39 @@
+<div class="pb-5">
+    <div class="pagination-box">
+        
+        <!-- previous button -->
+        {{#equals current 1}}
+        {{else}}
+            <div class="page-item">
+                <a class="page-link" href="/{{url}}?page={{minus current 1}}">
+                    Previous
+                </a>
+            </div>
+        {{/equals}}
+
+        <!-- page buttons -->
+        {{#repeat count=pages start=1}}
+        <div class="page-item {{#equals current @index}}active{{/equals}}">
+            <a class="page-link" href="/{{url}}?page={{@index}}">
+                {{@index}}
+            </a>
+        </div>
+        {{else}}
+        <div class="page-item active">
+            <a class="page-link" href="/{{url}}?page=1">
+                1
+            </a>
+        </div>
+        {{/repeat}}
+
+        <!-- next button -->
+        {{#equals current pages}}
+        {{else}}
+            <div class="page-item">
+                <a class="page-link" href="/{{url}}?page={{add current 1}}">
+                    Next
+                </a>
+            </div>
+        {{/equals}}
+    </div>
+</div>
