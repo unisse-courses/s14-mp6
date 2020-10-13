@@ -1,0 +1,39 @@
+<script>
+    function reg() {
+        document.getElementById('error').innerHTML = "";
+        
+        if (document.getElementById('password').value == document.getElementById('confirmpassword').value)
+        {
+            var data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+
+            $.post('addUser', data, function(response, status) {
+                if (response.success)
+                    document.getElementById('error').innerHTML = response.message + "Click <a href=\"login\">here</a> to login";
+                else
+                    document.getElementById('error').innerHTML = response.message;
+            });
+        }
+        else
+        {
+            document.getElementById('error').innerHTML = "Passwords do not match!";
+        }
+    };
+</script>
+
+<div class="login-page">
+    <div class="login-form">
+        <form class="login" id="register">
+            <input id="name" type="text" placeholder="Name">
+            <input id="email" type="text" placeholder="Email">
+            <input id="password" type="text" placeholder="Password">
+            <input id="confirmpassword" type="text" placeholder="Confirm Password">
+            <button id="register" type="button" onclick="reg()">Register</button>
+            <p class="msg"> Already Registered? <a href="/login">Login</a></p>
+            <p id="error" class="msg"></p>
+        </form>
+    </div>
+</div>

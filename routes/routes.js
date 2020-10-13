@@ -12,6 +12,8 @@ const bodyParser = require('body-parser');
 const controller = require('../controller/controller.js');
 const articleController = require('../controller/articleController.js');
 const logInController = require('../controller/logInController.js');
+const userController = require('../controller/userController.js');
+const { log } = require('handlebars');
 
 const app = express();
 
@@ -52,16 +54,16 @@ app.use(session({
   saveUninitialized: true,
   store: database.sessionStore,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 // 1 Day.
+    maxAge: 1000 * 60 * 60 * 24, // 1 Day.
   }
 }));
-
+/*
 app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
+  if (req.cookies.user_sid && !req.session.email) {
     res.clearCookie('user_sid');
   }
   next();
-});
+});*/
 
 //pages
 
@@ -76,6 +78,15 @@ app.get('/offices', controller.getOffices);
 app.get('/food', controller.getFood);
 
 app.get('/article', articleController.findArticle);
+
+/* ---------------------------------------------------------- */
+
+app.get('/login', controller.getLogin);
+app.post('/checkLogin', logInController.checkLogin);
+app.get('/register', controller.getRegister);
+app.post('/addUser', userController.postUser);
+
+app.get('/myprofile', controller.getMyProfile);
 
 app.get('/404', controller.get404);
 /*

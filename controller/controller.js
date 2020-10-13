@@ -28,9 +28,21 @@ const controller = {
                         doc.content = doc.content.substring(0, 70);
                     });
                     
+                    if (req.session.name && req.cookies.user_sid) {
+                        loggedin = true;
+                        name = req.session.name;
+                    } else {
+                        loggedin = false;
+                        name = null;
+                    }
+
                     res.render('home', {
                         layout: '/layouts/main',
                         title: 'Home - DLSU Guide',
+
+                        loggedin: loggedin,
+                        name: name,
+
                         featured: featuredArray,
                         articles: articleArray,
                         
@@ -68,9 +80,21 @@ const controller = {
                     doc.content = doc.content.substring(0, 70);
                 });
                 
+                if (req.session.name && req.cookies.user_sid) {
+                    loggedin = true;
+                    name = req.session.name;
+                } else {
+                    loggedin = false;
+                    name = null;
+                }
+
                 res.render('category', {
                     layout: '/layouts/main',
                     title: type + ' - DLSU Guide',
+
+                    loggedin: loggedin,
+                    name: name,
+
                     category: type,
                     description: 'Articles all about ' + type,
                     articles: articleArray,
@@ -108,9 +132,21 @@ const controller = {
                     doc.content = doc.content.substring(0, 70);
                 });
                 
+                if (req.session.name && req.cookies.user_sid) {
+                    loggedin = true;
+                    name = req.session.name;
+                } else {
+                    loggedin = false;
+                    name = null;
+                }
+
                 res.render('category', {
                     layout: '/layouts/main',
                     title: type + ' - DLSU Guide',
+                    
+                    loggedin: loggedin,
+                    name: name,
+                    
                     category: type,
                     description: 'Articles all about ' + type,
                     articles: articleArray,
@@ -148,9 +184,21 @@ const controller = {
                     doc.content = doc.content.substring(0, 70);
                 });
                 
+                if (req.session.name && req.cookies.user_sid) {
+                    loggedin = true;
+                    name = req.session.name;
+                } else {
+                    loggedin = false;
+                    name = null;
+                }
+
                 res.render('category', {
                     layout: '/layouts/main',
                     title: type + ' - DLSU Guide',
+                    
+                    loggedin: loggedin,
+                    name: name,
+                    
                     category: type,
                     description: 'Articles all about ' + type,
                     articles: articleArray,
@@ -165,18 +213,73 @@ const controller = {
     },
 
     getAbout: function (req, res) {
+        if (req.session.name && req.cookies.user_sid) {
+            loggedin = true;
+            name = req.session.name;
+        } else {
+            loggedin = false;
+            name = null;
+        }
+        
         res.render('about', {
             layout: '/layouts/main',
             title: 'About - DLSU Guide',
+
+            loggedin: loggedin,
+            name: name,
         });
     },
 
     get404: function (req, res) {
+        if (req.session.name && req.cookies.user_sid) {
+            loggedin = true;
+            name = req.session.name;
+        } else {
+            loggedin = false;
+            name = null;
+        }
+        
         res.render('404', {
             layout: 'layouts/main',
-            title: '404 Not Found - DLSU Guide'
+            title: '404 Not Found - DLSU Guide',
+
+            loggedin: loggedin,
+            name: name,
         });
-    }
+    },
+
+    getLogin: function (req, res) {
+        res.render('login', {
+            layout: 'layouts/main',
+            title: 'Log In - DLSU Guide'
+        });
+    },
+
+    getRegister: function (req, res) {
+        res.render('register', {
+            layout: 'layouts/main',
+            title: 'Register - DLSU Guide'
+        });
+    },
+
+    getMyProfile: function (req, res) {
+        if (req.session.name && req.cookies.user_sid) {
+            database.findOne(Users, { _id: req.session._id }, {}, function(user) {
+                res.render('myprofile', {
+                    layout: 'layouts/main',
+                    title: user.name,
+
+                    loggedin: true,
+                    
+                    name: user.name,
+                    email: user.email,
+                    bio: user.bio
+                })
+            })
+        } else {
+            res.redirect('/login');
+        }
+    },
 }
 
 // enables to export controller object when called in another .js file

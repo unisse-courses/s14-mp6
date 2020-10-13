@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    password: {
+    bio: {
         type: String,
-        required: false
+        required: true
     }
 });
 
