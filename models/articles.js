@@ -23,7 +23,7 @@ const articleSchema = new mongoose.Schema({
         required: true 
     },
 
-    author: {
+    authorid: {
         type: String,
         required: true
     },

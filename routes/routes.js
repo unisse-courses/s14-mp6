@@ -94,6 +94,13 @@ app.post('/updateDetails', userController.updateDetails);
 app.post('/updatePassword', userController.updatePassword);
 app.post('/deleteAccount', userController.deleteUser);
 
+app.get('/myarticles', controller.getMyArticles);
+app.get('/newarticle', controller.getNewArticle);
+app.post('/newarticle', articleController.postArticle);
+app.get('/editarticle', controller.getEditArticle);
+app.post('/editarticle', articleController.editArticle);
+app.post('/deletearticle', articleController. deleteArticle);
+
 app.get('/404', controller.get404);
 /*
 app.use((req, res, next) => {

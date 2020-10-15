@@ -1,4 +1,5 @@
 const User = require('../models/users.js');
+const Article = require('../models/articles.js');
 const fs = require('fs');
 const database = require('../models/db.js');
 const { ObjectID } = require('mongodb');
@@ -111,6 +112,7 @@ const userController = {
 
     deleteUser: function (req, res) {
         database.deleteOne(User, {_id: ObjectID(req.session._id)});
+        database.deleteMany(Article, {authorid: ObjectID(req.session._id)});
         res.status(200).send({url: 'home'});
         req.session.destroy();
     },

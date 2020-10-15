@@ -1,0 +1,42 @@
+<script>
+    function submitArticle() {
+        document.getElementById('error').innerHTML = "";
+
+        if (document.getElementById('title').value == "" || document.getElementById('content').value == "") {
+            document.getElementById('error').innerHTML = "Missing Fields!";
+        } else {
+            var data = {
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value,
+                category: document.getElementById('category').options[document.getElementById('category').selectedIndex].value,
+                published: document.getElementById('published').checked
+            };
+
+            $.post('newarticle', data, function(response, status) {
+                window.location = response.url;
+            });
+        }
+    };
+</script>
+
+<div class="centered">
+    New Article<br><br>
+    <form>
+        Title<br>
+        <input id="title" type="text"><br>
+        Content<br>
+        <textarea rows="40" cols="100" id="content"></textarea><br>
+        Category<br>
+        <select id="category">
+            <option value="classrooms">Classrooms</option>
+            <option value="offices">Offices</option>
+            <option value="food">Food</option>
+        </select><br>
+        Publish<br>
+        <input id="published" type="checkbox"><br>
+        <br>
+
+        <button type="button" onclick="submitArticle()">Save</button>
+        <p id="error"></p>
+    </form>
+</div>

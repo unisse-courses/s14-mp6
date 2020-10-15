@@ -1,0 +1,53 @@
+<script>
+    function submitArticle() {
+        document.getElementById('error').innerHTML = "";
+
+        if (document.getElementById('title').value == "" || document.getElementById('content').value == "") {
+            document.getElementById('error').innerHTML = "Missing Fields!";
+        } else {
+            var data = {
+                _id: document.getElementById('id').innerHTML,
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value,
+                category: document.getElementById('category').options[document.getElementById('category').selectedIndex].value,
+                published: document.getElementById('published').checked
+            };
+
+            $.post('/editarticle', data, function(response, status) {
+                window.location = response.url;
+            });
+        }
+    };
+
+    function deleteArticle() {
+        $.post('/deletearticle', { _id: document.getElementById('id').innerHTML }, function(response, status) {
+            window.location = response.url;
+        });
+    }
+</script>
+
+<div class="centered">
+    Edit Article<br><br>
+    <form>
+        Article id:
+        <div id="id">{{article_id}}</div><br>
+        Title<br>
+        <input id="title" type="text" value="{{article_title}}"><br>
+        Content<br>
+        <textarea rows="40" cols="100" id="content">{{article_content}}</textarea><br>
+        Category<br>
+        <select id="category">
+            <option value="classrooms"{{#equals article_category 'classrooms'}} selected="selected"{{/equals}}>Classrooms</option>
+            <option value="offices"{{#equals article_category 'offices'}} selected="selected"{{/equals}}>Offices</option>
+            <option value="food"{{#equals article_category 'food'}} selected="selected"{{/equals}}>Food</option>
+        </select><br>
+        Publish<br>
+        <input id="published" type="checkbox"{{#if article_published}} checked{{/if}}><br>
+        <br>
+
+        <button type="button" onclick="submitArticle()">Save</button><br>
+        <br>
+        <br>
+        <button type="button" onclick="deleteArticle()">Delete</button>
+    </form>
+</div>

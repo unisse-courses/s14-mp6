@@ -2,6 +2,7 @@
 const database = require('../models/db.js');
 const Articles = require('../models/articles.js');
 const Users = require('../models/users.js');
+const articles = require('../models/articles.js');
 
 const controller = {
     
@@ -15,42 +16,46 @@ const controller = {
             .skip(perPage * page - perPage)
             .limit(perPage)
             .exec(function (err, articleArray) {
-                database.findMany(Articles, {featured: {$eq: true}}, {}, function (featuredArray) {
-                    articleArray.forEach(function(doc) {
-                        doc.title = doc.title.substring(0, 20);
-                        doc.author = doc.author.substring(0, 20);
-                        doc.content = doc.content.substring(0, 70);
-                    });
+                var articleArrayAuthorNames = [];
+                articleArray.forEach(function(doc) {
+                    var newArticle = {
+                        _id: doc._id,
+                        title: doc.title.substring(0, 20),
+                        content: doc.content.substring(0, 70),
+                        category: doc.category,
+                        author: null,
+                        date: doc.date,
+                    };
 
-                    featuredArray.forEach(function(doc) {
-                        doc.title = doc.title.substring(0, 20);
-                        doc.author = doc.author.substring(0, 20);
-                        doc.content = doc.content.substring(0, 70);
+                    database.findOne(Users, { _id: {$eq: doc.authorid} }, {}, function (user) {
+                        newArticle.author = user.name;
+                        articleArrayAuthorNames.push(newArticle);
                     });
+                });
+                
+                
+                if (req.session.name && req.cookies.user_sid) {
+                    loggedin = true;
+                    name = req.session.name;
+                } else {
+                    loggedin = false;
+                    name = null;
+                }
+
+                res.render('home', {
+                    layout: '/layouts/main',
+                    title: 'Home - DLSU Guide',
+
+                    loggedin: loggedin,
+                    name: name,
+
+                    featured: articleArrayAuthorNames,
+                    articles: articleArrayAuthorNames,
                     
-                    if (req.session.name && req.cookies.user_sid) {
-                        loggedin = true;
-                        name = req.session.name;
-                    } else {
-                        loggedin = false;
-                        name = null;
-                    }
-
-                    res.render('home', {
-                        layout: '/layouts/main',
-                        title: 'Home - DLSU Guide',
-
-                        loggedin: loggedin,
-                        name: name,
-
-                        featured: featuredArray,
-                        articles: articleArray,
-                        
-                        url: 'home',
-                        current: page,
-                        pages: Math.ceil(count / perPage),
-                        if_search: false,
-                    });
+                    url: 'home',
+                    current: page,
+                    pages: Math.ceil(count / perPage),
+                    if_search: false,
                 });
             });
         });
@@ -74,11 +79,23 @@ const controller = {
             .skip(perPage * page - perPage)
             .limit(perPage)
             .exec(function (err, articleArray) {
+                var articleArrayAuthorNames = [];
                 articleArray.forEach(function(doc) {
-                    doc.title = doc.title.substring(0, 20);
-                    doc.author = doc.author.substring(0, 20);
-                    doc.content = doc.content.substring(0, 70);
+                    var newArticle = {
+                        _id: doc._id,
+                        title: doc.title.substring(0, 20),
+                        content: doc.content.substring(0, 70),
+                        category: doc.category,
+                        author: null,
+                        date: doc.date,
+                    };
+
+                    database.findOne(Users, { _id: {$eq: doc.authorid} }, {}, function (user) {
+                        newArticle.author = user.name;
+                        articleArrayAuthorNames.push(newArticle);
+                    });
                 });
+                
                 
                 if (req.session.name && req.cookies.user_sid) {
                     loggedin = true;
@@ -87,7 +104,7 @@ const controller = {
                     loggedin = false;
                     name = null;
                 }
-
+            
                 res.render('category', {
                     layout: '/layouts/main',
                     title: type + ' - DLSU Guide',
@@ -97,7 +114,7 @@ const controller = {
 
                     category: type,
                     description: 'Articles all about ' + type,
-                    articles: articleArray,
+                    articles: articleArrayAuthorNames,
                     
                     url: link,
                     current: page,
@@ -126,11 +143,23 @@ const controller = {
             .skip(perPage * page - perPage)
             .limit(perPage)
             .exec(function (err, articleArray) {
+                var articleArrayAuthorNames = [];
                 articleArray.forEach(function(doc) {
-                    doc.title = doc.title.substring(0, 20);
-                    doc.author = doc.author.substring(0, 20);
-                    doc.content = doc.content.substring(0, 70);
+                    var newArticle = {
+                        _id: doc._id,
+                        title: doc.title.substring(0, 20),
+                        content: doc.content.substring(0, 70),
+                        category: doc.category,
+                        author: null,
+                        date: doc.date,
+                    };
+
+                    database.findOne(Users, { _id: {$eq: doc.authorid} }, {}, function (user) {
+                        newArticle.author = user.name;
+                        articleArrayAuthorNames.push(newArticle);
+                    });
                 });
+                
                 
                 if (req.session.name && req.cookies.user_sid) {
                     loggedin = true;
@@ -139,17 +168,17 @@ const controller = {
                     loggedin = false;
                     name = null;
                 }
-
+            
                 res.render('category', {
                     layout: '/layouts/main',
                     title: type + ' - DLSU Guide',
-                    
+
                     loggedin: loggedin,
                     name: name,
-                    
+
                     category: type,
                     description: 'Articles all about ' + type,
-                    articles: articleArray,
+                    articles: articleArrayAuthorNames,
                     
                     url: link,
                     current: page,
@@ -178,11 +207,23 @@ const controller = {
             .skip(perPage * page - perPage)
             .limit(perPage)
             .exec(function (err, articleArray) {
+                var articleArrayAuthorNames = [];
                 articleArray.forEach(function(doc) {
-                    doc.title = doc.title.substring(0, 20);
-                    doc.author = doc.author.substring(0, 20);
-                    doc.content = doc.content.substring(0, 70);
+                    var newArticle = {
+                        _id: doc._id,
+                        title: doc.title.substring(0, 20),
+                        content: doc.content.substring(0, 70),
+                        category: doc.category,
+                        author: null,
+                        date: doc.date,
+                    };
+
+                    database.findOne(Users, { _id: {$eq: doc.authorid} }, {}, function (user) {
+                        newArticle.author = user.name;
+                        articleArrayAuthorNames.push(newArticle);
+                    });
                 });
+                
                 
                 if (req.session.name && req.cookies.user_sid) {
                     loggedin = true;
@@ -191,17 +232,17 @@ const controller = {
                     loggedin = false;
                     name = null;
                 }
-
+            
                 res.render('category', {
                     layout: '/layouts/main',
                     title: type + ' - DLSU Guide',
-                    
+
                     loggedin: loggedin,
                     name: name,
-                    
+
                     category: type,
                     description: 'Articles all about ' + type,
-                    articles: articleArray,
+                    articles: articleArrayAuthorNames,
                     
                     url: link,
                     current: page,
@@ -300,7 +341,80 @@ const controller = {
                 });
             });
         } else {
-            res.redirect('/login');
+            res.redirect('login');
+        }
+    },
+
+    getMyArticles: function (req, res) {
+        if (req.session.name && req.cookies.user_sid) {
+            Articles.countDocuments({authorid: {$eq: req.session._id}}, function (err, count) {
+                var perPage = 10;
+                var page = req.query.page || 1;
+
+                Articles
+                .find( {authorid: req.session._id} )
+                .skip(perPage * page - perPage)
+                .limit(perPage)
+                .exec(function (err, articleArray) {                    
+                    res.render('myarticles', {
+                        layout: '/layouts/main',
+                        title: 'My Articles - DLSU Guide',
+
+                        loggedin: true,
+                        name: req.session.name,
+                        
+                        articles: articleArray,
+
+                        url: 'myarticles',
+                        current: page,
+                        pages: Math.ceil(count / perPage),
+                        if_search: false,
+                    });
+                });
+            });
+        } else {
+            res.redirect('login');
+        }
+    },
+
+    getNewArticle: function (req, res) {
+        if (req.session.name && req.cookies.user_sid) {
+            res.render('newarticle', {
+                layout: '/layouts/main',
+                title: 'New Articles - DLSU Guide',
+
+                loggedin: true,
+                name: req.session.name,
+            });
+        } else {
+            res.redirect('login');
+        }
+    },
+
+    getEditArticle: function (req, res) {
+        if (req.session.name && req.cookies.user_sid) {
+            database.findOne(Articles, {_id: req.query.id}, {}, function (article) {
+                if (article.authorid == req.session._id) {
+                    res.render('editarticle', {
+                        layout: '/layouts/main',
+                        title: 'Editing ' + article.title + ' - DLSU Guide',
+
+                        loggedin: true,
+                        name: req.session.name,
+                        
+                        article_id: article._id,
+                        article_title: article.title,
+                        article_content: article.content,
+                        article_category: article.category,
+                        article_published: article.published,
+                        article_date: article.date,
+                    });
+                } else {
+                    res.redirect('404');
+                }
+            });
+        } else {
+            res.redirect('login');
         }
     }
 }

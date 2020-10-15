@@ -1,0 +1,26 @@
+<div class="centered">
+    My Articles<br>
+    <a href="/newarticle">New Article</a><br>
+    <br>
+    
+    <table border="solid black 1px" width="100%">
+        <tr>
+            <td>Title</td>
+            <td>Category</td>
+            <td>Date</td>
+            <td>Published</td>
+            <td>Edit</td>
+        </tr>
+        {{#each articles}}
+        <tr>
+            <td>{{title}}</td>
+            <td>{{category}}</td>
+            <td>{{dateFormat date "MMMM Do, YYYY"}}</td>
+            <td>{{#if published}}Yes{{else}}No{{/if}}</td>
+            <td><a href="/editarticle?id={{_id}}">Edit</a></td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+
+{{> pagination}}

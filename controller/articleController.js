@@ -5,13 +5,9 @@ const { ObjectID } = require('mongodb');
 const { validationResult } = require('express-validator');
 
 const articleController = {
-    postArticle: function (req, res) {
-
-    },
-
+    
     findArticle: function (req, res) {
-        var query = req.query.id;
-        database.findOne(Article, { _id: query }, {}, function (article) {
+        database.findOne(Article, { _id: req.query.id }, {}, function (article) {
             console.log(article.title);
 
             if (article.published) {
@@ -27,15 +23,49 @@ const articleController = {
         });
     },
 
-    deleteArticle: function (req, res) {
-        var article_id = res.query.id;
-        var article_path; // add later
-        var article_details = {_id: ObjectID(article_id)};
+    postArticle: function (req, res) {
+        var today = new Date();
+        var newArticle = {
+            title: req.body.title,
+            content: req.body.content,
+            category: req.body.category,
+            authorid: req.session._id,
+            date: (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear(),
+            published: req.body.published,
+            featured: false
+        };
+        
+        console.log(req.body.published);
 
+        database.insertOne(Article, newArticle, (result) => {
+            res.status(200).send( {url: '/myarticles'} );
+        });
+    },
+
+    editArticle: function (req, res) {
+        console.log(req.query.id);
+        database.findOne(Article, {_id: req.body._id}, {}, function (article) {
+            var newArticle = {
+                title: req.body.title,
+                content: req.body.content,
+                category: req.body.category,
+                authorid: article.authorid,
+                date: article.date,
+                published: req.body.published,
+                featured: article.featured
+            };
+            console.log(newArticle);
+
+            database.updateOne(Article, {_id: req.body._id}, newArticle);
+            res.status(200).send( {url: '/myarticles'} );
+        });
+    },
+
+    deleteArticle: function (req, res) {
         //remove file here
 
-        database.deleteOne(Article, article_details);
-        //res.redirect('');
+        database.deleteOne(Article, {_id: ObjectID(req.body._id)});
+        res.status(200).send({url: 'myarticles'});
     }
 }
 
