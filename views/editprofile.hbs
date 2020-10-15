@@ -1,0 +1,90 @@
+<script>
+    function updateDetails() {        
+        document.getElementById('detailsmsg').innerHTML = "";
+        
+        if (document.getElementById('name').value == "" || document.getElementById('email').value == "" || document.getElementById('bio').value == "") {
+            document.getElementById('detailsmsg').innerHTML = "Missing Fields!";
+        } else {
+            var data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                bio: document.getElementById('bio').value
+            };
+
+            $.post('updateDetails', data, function(response, status) {
+                document.getElementById('detailsmsg').innerHTML = response.message;
+            });
+
+            document.getElementById('detailsmsg').innerHTML = "Updating...";
+        }
+    };
+
+    function updatePassword() {
+        document.getElementById('passwordmsg').innerHTML = "";
+
+        if (document.getElementById('passwordold').value == "" || document.getElementById('passwordnew').value == "" || document.getElementById('passwordconfirm').value == "") {
+            document.getElementById('passwordmsg').innerHTML = "Missing Fields!";
+        } else {
+            if (document.getElementById('passwordnew').value == document.getElementById('passwordconfirm').value) {
+                var data = {
+                    passwordold: document.getElementById('passwordold').value,
+                    passwordnew: document.getElementById('passwordnew').value,
+                }
+                $.post('updatePassword', data, function (response, status) {
+                    document.getElementById('passwordmsg').innerHTML = response.message;
+                });
+            } else {
+                document.getElementById('passwordmsg').innerHTML = "Passwords do not match!";
+            }
+        }
+    };
+
+    function showConfirm() {
+        document.getElementById('confirm').style.visibility = "visible";
+        document.getElementById('deleteAccountButton').style.visibility = "hidden";
+    };
+
+    function deleteAccount() {
+        $.post('deleteAccount', {}, function (response, status) {
+            window.location = response.url;
+        });
+    };
+
+</script>
+
+<div class="centered">
+    <form class="login">
+        <h3>Update Details</h3>
+        Name <br>
+        <input id="name" type="text" value="{{name}}"><br>
+        Email<br>
+        <input id="email" type="text" value={{email}}><br>
+        bio<br>
+        <input id="bio" type="text" value="{{bio}}"><br>
+        <button type="button" onclick="updateDetails()">Update</button>
+
+        <p id="detailsmsg"></p>
+    </form>
+
+    <form class="login">
+        <h3>Update Password</h3>
+        Old Password<br>
+        <input id="passwordold" type="text"><br>
+        New Password<br>
+        <input id="passwordnew" type="text"><br>
+        Confirm New Password<br>
+        <input id="passwordconfirm" type="text"><br>
+        <button type="button" onclick="updatePassword()">Update</button>
+
+        <p id="passwordmsg"></p>
+    </form>
+
+    <div id="deleteAccountButton">
+        <button type="button" onclick="showConfirm()">Delete Account</button>
+    </div>
+
+    <div id="confirm" class="hidden">
+        Delete account? This cannot be undone.<br>
+        <button type="button" onclick="deleteAccount()">Confirm</button>
+    </div>
+</div>

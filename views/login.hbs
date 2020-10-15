@@ -11,7 +11,7 @@
             if (response.success)
                 window.location = response.url;
             else
-                document.getElementById('error').innerHTML = "Incorrect Email or Password!";
+                document.getElementById('error').innerHTML = response.warning;
         });
     };
 </script>
@@ -20,7 +20,7 @@
     <div class="login-form">
         <form class="login" id="login">
             <input id="email" type="text" placeholder="Email">
-            <input id="password" type="text" placeholder="Password">
+            <input id="password" type="password" placeholder="Password">
             <button id="submit" type="button" onclick="login()">Login</button>
             <p class="msg"> Not Yet Registered? <a href="/register">Register</a></p>
             <p id="error" class="msg"></p>

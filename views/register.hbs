@@ -12,7 +12,7 @@
 
             $.post('addUser', data, function(response, status) {
                 if (response.success)
-                    document.getElementById('error').innerHTML = response.message + "Click <a href=\"login\">here</a> to login";
+                    document.getElementById('error').innerHTML = response.message + "<br>Click <a href=\"login\">here</a> to login";
                 else
                     document.getElementById('error').innerHTML = response.message;
             });
@@ -29,8 +29,8 @@
         <form class="login" id="register">
             <input id="name" type="text" placeholder="Name">
             <input id="email" type="text" placeholder="Email">
-            <input id="password" type="text" placeholder="Password">
-            <input id="confirmpassword" type="text" placeholder="Confirm Password">
+            <input id="password" type="password" placeholder="Password">
+            <input id="confirmpassword" type="password" placeholder="Confirm Password">
             <button id="register" type="button" onclick="reg()">Register</button>
             <p class="msg"> Already Registered? <a href="/login">Login</a></p>
             <p id="error" class="msg"></p>

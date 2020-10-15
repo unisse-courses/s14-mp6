@@ -1,6 +1,26 @@
-profile of: {{name}} <br>
-email: {{email}} <br>
+<script>
+    function logout() {
+        var data = {
+            logout: true
+        };
 
-<br>
+        $.post('logout', data, function(response, status) {
+            if (response.success)
+                window.location = response.url;
+        });
+    }
+</script>
 
-bio: {{bio}}
+<div class="centered">
+    <button onclick="logout()">Logout</button> <br>
+    <br>
+
+    profile of: {{name}} <br>
+    email: {{email}} <br>
+    <br>
+
+    bio: {{bio}} <br>
+    <br>
+
+    <a href="/editprofile">edit profile</a> <br>
+</div>

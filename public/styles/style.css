@@ -436,3 +436,7 @@ a {
   border-radius: 5px;
   border: solid black 1px;
 }
+
+.hidden {
+  visibility: hidden;
+}

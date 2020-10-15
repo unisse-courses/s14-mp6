@@ -16,9 +16,14 @@ const logIncontroller = {
             url: 'myprofile'
         }
 
-        var warning = {
+        var warninguser = {
             success: false,
-            url: null
+            warning: 'Email not found!'
+        }
+
+        var warningpass = {
+            success: false,
+            warning: 'Incorrect password!'
         }
 
         database.findOne(User, { email: email }, {}, function (user) {
@@ -32,15 +37,25 @@ const logIncontroller = {
                         res.status('200').send(redirect);
                     }
                     else {
-                        res.status('200').send(warning);
+                        res.status('200').send(warningpass);
                     }
                 });
             }
             else {
-                res.status('200').send(warning);
+                res.status('200').send(warninguser);
             }
         })
-    }
+    },
+
+    postLogout: function (req, res) {
+        var response = {
+            success: req.session.name && req.cookies.user_sid,
+            url: 'login'
+        };
+        
+        res.status(200).send(response);
+        req.session.destroy();
+    },
 }
 
 // enables to export controller object when called in another .js file

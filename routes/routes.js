@@ -14,6 +14,8 @@ const articleController = require('../controller/articleController.js');
 const logInController = require('../controller/logInController.js');
 const userController = require('../controller/userController.js');
 const { log } = require('handlebars');
+const { isError } = require('util');
+const { editPassword } = require('../controller/userController.js');
 
 const app = express();
 
@@ -69,7 +71,6 @@ app.use((req, res, next) => {
 
 app.get('/', controller.getHome);
 app.get('/home', controller.getHome);
-app.post('/checkLogin', logInController.checkLogin);
 
 app.get('/about', controller.getAbout);
 
@@ -81,12 +82,17 @@ app.get('/article', articleController.findArticle);
 
 /* ---------------------------------------------------------- */
 
-app.get('/login', controller.getLogin);
-app.post('/checkLogin', logInController.checkLogin);
 app.get('/register', controller.getRegister);
 app.post('/addUser', userController.postUser);
+app.get('/login', controller.getLogin);
+app.post('/checkLogin', logInController.checkLogin);
+app.post('/logout', logInController.postLogout);
 
 app.get('/myprofile', controller.getMyProfile);
+app.get('/editprofile', controller.getMyProfileEdit);
+app.post('/updateDetails', userController.updateDetails);
+app.post('/updatePassword', userController.updatePassword);
+app.post('/deleteAccount', userController.deleteUser);
 
 app.get('/404', controller.get404);
 /*

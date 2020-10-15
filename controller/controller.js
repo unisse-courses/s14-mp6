@@ -248,13 +248,6 @@ const controller = {
         });
     },
 
-    getLogin: function (req, res) {
-        res.render('login', {
-            layout: 'layouts/main',
-            title: 'Log In - DLSU Guide'
-        });
-    },
-
     getRegister: function (req, res) {
         res.render('register', {
             layout: 'layouts/main',
@@ -262,24 +255,54 @@ const controller = {
         });
     },
 
+    getLogin: function (req, res) {
+        if(req.session.name && req.cookies.user_sid) {
+            res.redirect('myprofile');
+        } else {
+            res.render('login', {
+                layout: 'layouts/main',
+                title: 'Log In - DLSU Guide'
+            });
+        }
+    },
+
     getMyProfile: function (req, res) {
         if (req.session.name && req.cookies.user_sid) {
             database.findOne(Users, { _id: req.session._id }, {}, function(user) {
                 res.render('myprofile', {
                     layout: 'layouts/main',
-                    title: user.name,
+                    title: user.name + ' - DLSU Guide',
 
                     loggedin: true,
                     
                     name: user.name,
                     email: user.email,
                     bio: user.bio
-                })
-            })
+                });
+            });
+        } else {
+            res.redirect('login');
+        }
+    },
+
+    getMyProfileEdit: function (req, res) {
+        if (req.session.name && req.cookies.user_sid) {
+            database.findOne(Users, { _id: req.session._id }, {}, function(user) {
+                res.render('editprofile', {
+                    layout: 'layouts/main',
+                    title: 'Edit Profile - DLSU Guide',
+
+                    loggedin: true,
+                    
+                    name: user.name,
+                    email: user.email,
+                    bio: user.bio
+                });
+            });
         } else {
             res.redirect('/login');
         }
-    },
+    }
 }
 
 // enables to export controller object when called in another .js file
