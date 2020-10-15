@@ -8,4 +8,4 @@
 ### setup
 1. run ```npm install```
 2. run ```node index```
-3. open <locahost:3000> in browser
+3. open [localhost:3000](localhost:3000) in browser
