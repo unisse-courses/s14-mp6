@@ -33,29 +33,47 @@ const controller = {
                     });
                 });
                 
-                
-                if (req.session.name && req.cookies.user_sid) {
-                    loggedin = true;
-                    name = req.session.name;
-                } else {
-                    loggedin = false;
-                    name = null;
-                }
+                database.findMany(Articles, {featured: true}, {}, function (featuredArray) {
+                    var featuredArrayAuthorNames = [];
+                    featuredArray.forEach(function(doc) {
+                        var newArticle = {
+                            _id: doc._id,
+                            title: doc.title.substring(0, 20),
+                            content: doc.content.substring(0, 70),
+                            category: doc.category,
+                            author: null,
+                            date: doc.date,
+                        };
 
-                res.render('home', {
-                    layout: '/layouts/main',
-                    title: 'Home - DLSU Guide',
+                        database.findOne(Users, { _id: {$eq: doc.authorid} }, {}, function (user) {
+                            newArticle.author = user.name;
+                            featuredArrayAuthorNames.push(newArticle);
+                        });
+                    });
 
-                    loggedin: loggedin,
-                    name: name,
-
-                    featured: articleArrayAuthorNames,
-                    articles: articleArrayAuthorNames,
-                    
-                    url: 'home',
-                    current: page,
-                    pages: Math.ceil(count / perPage),
-                    if_search: false,
+                    if (req.session.name && req.cookies.user_sid) {
+                        loggedin = true;
+                        name = req.session.name;
+                    } else {
+                        loggedin = false;
+                        name = null;
+                    }
+    
+                    res.render('home', {
+                        layout: '/layouts/main',
+                        title: 'Home - DLSU Guide',
+    
+                        loggedin: loggedin,
+                        name: name,
+    
+                        featured: featuredArrayAuthorNames,
+                        articles: articleArrayAuthorNames,
+                        
+                        url: 'home',
+                        current: page,
+                        pages: Math.ceil(count / perPage),
+                        if_search: false,
+                    });
                 });
             });
         });
