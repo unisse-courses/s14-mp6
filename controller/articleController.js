@@ -1,25 +1,33 @@
 const Article = require('../models/articles.js');
+const User = require('../models/users.js');
 const fs = require('fs');
 const database = require('../models/db.js');
 const { ObjectID } = require('mongodb');
 const { validationResult } = require('express-validator');
+const { request } = require('express');
 
 const articleController = {
     
     findArticle: function (req, res) {
         database.findOne(Article, { _id: req.query.id }, {}, function (article) {
-            console.log(article.title);
-
-            if (article.published) {
-                res.render('article', {
-                    layout: '/layouts/main',
-                    title: article.title + ' - DLSU Guide',
-                    article: article
+            if (article) {
+                database.findOne(User, {_id: article.authorid}, {}, function(user) {
+                    if (article.published) {
+                        res.render('article', {
+                            layout: '/layouts/main',
+                            title: article.title + ' - DLSU Guide',
+                            article: article,
+                            author: user.name
+                        });
+                    }
+                    else {
+                        res.redirect('/404');
+                    }
                 });
-            }
-            else {
+            } else {
                 res.redirect('/404');
             }
+            
         });
     },
 
@@ -27,6 +35,7 @@ const articleController = {
         var today = new Date();
         var newArticle = {
             title: req.body.title,
+            image: req.session.image,
             content: req.body.content,
             category: req.body.category,
             authorid: req.session._id,
@@ -34,8 +43,6 @@ const articleController = {
             published: req.body.published,
             featured: false
         };
-        
-        console.log(req.body.published);
 
         database.insertOne(Article, newArticle, (result) => {
             res.status(200).send( {url: '/myarticles'} );
@@ -43,10 +50,10 @@ const articleController = {
     },
 
     editArticle: function (req, res) {
-        console.log(req.query.id);
         database.findOne(Article, {_id: req.body._id}, {}, function (article) {
             var newArticle = {
                 title: req.body.title,
+                image: req.session.image,
                 content: req.body.content,
                 category: req.body.category,
                 authorid: article.authorid,
@@ -54,7 +61,6 @@ const articleController = {
                 published: req.body.published,
                 featured: article.featured
             };
-            console.log(newArticle);
 
             database.updateOne(Article, {_id: req.body._id}, newArticle);
             res.status(200).send( {url: '/myarticles'} );
@@ -65,7 +71,16 @@ const articleController = {
         //remove file here
 
         database.deleteOne(Article, {_id: ObjectID(req.body._id)});
-        res.status(200).send({url: 'myarticles'});
+        res.status(200).send({url: '/myarticles'});
+    },
+
+    postImage: function (req, res) {
+        req.session.image = req.body.image;
+        
+        res.status(200).send();
+
+        console.log("image updated");
+        console.log(req.session.image.substring(0, 20))
     }
 }
 

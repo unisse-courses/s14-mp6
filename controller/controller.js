@@ -2,7 +2,6 @@
 const database = require('../models/db.js');
 const Articles = require('../models/articles.js');
 const Users = require('../models/users.js');
-const articles = require('../models/articles.js');
 
 const controller = {
     
@@ -21,6 +20,7 @@ const controller = {
                     var newArticle = {
                         _id: doc._id,
                         title: doc.title.substring(0, 20),
+                        image: doc.image,
                         content: doc.content.substring(0, 70),
                         category: doc.category,
                         author: null,
@@ -39,6 +39,7 @@ const controller = {
                         var newArticle = {
                             _id: doc._id,
                             title: doc.title.substring(0, 20),
+                            image: doc.image,
                             content: doc.content.substring(0, 70),
                             category: doc.category,
                             author: null,
@@ -51,7 +52,7 @@ const controller = {
                         });
                     });
 
-                    if (req.session.name && req.cookies.user_sid) {
+                    if (req.session.name) {
                         loggedin = true;
                         name = req.session.name;
                     } else {
@@ -102,6 +103,7 @@ const controller = {
                     var newArticle = {
                         _id: doc._id,
                         title: doc.title.substring(0, 20),
+                        image: doc.image,
                         content: doc.content.substring(0, 70),
                         category: doc.category,
                         author: null,
@@ -115,7 +117,7 @@ const controller = {
                 });
                 
                 
-                if (req.session.name && req.cookies.user_sid) {
+                if (req.session.name) {
                     loggedin = true;
                     name = req.session.name;
                 } else {
@@ -166,6 +168,7 @@ const controller = {
                     var newArticle = {
                         _id: doc._id,
                         title: doc.title.substring(0, 20),
+                        image: doc.image,
                         content: doc.content.substring(0, 70),
                         category: doc.category,
                         author: null,
@@ -179,7 +182,7 @@ const controller = {
                 });
                 
                 
-                if (req.session.name && req.cookies.user_sid) {
+                if (req.session.name) {
                     loggedin = true;
                     name = req.session.name;
                 } else {
@@ -230,6 +233,7 @@ const controller = {
                     var newArticle = {
                         _id: doc._id,
                         title: doc.title.substring(0, 20),
+                        image: doc.image,
                         content: doc.content.substring(0, 70),
                         category: doc.category,
                         author: null,
@@ -243,7 +247,7 @@ const controller = {
                 });
                 
                 
-                if (req.session.name && req.cookies.user_sid) {
+                if (req.session.name) {
                     loggedin = true;
                     name = req.session.name;
                 } else {
@@ -272,7 +276,7 @@ const controller = {
     },
 
     getAbout: function (req, res) {
-        if (req.session.name && req.cookies.user_sid) {
+        if (req.session.name) {
             loggedin = true;
             name = req.session.name;
         } else {
@@ -290,7 +294,7 @@ const controller = {
     },
 
     get404: function (req, res) {
-        if (req.session.name && req.cookies.user_sid) {
+        if (req.session.name) {
             loggedin = true;
             name = req.session.name;
         } else {
@@ -315,7 +319,7 @@ const controller = {
     },
 
     getLogin: function (req, res) {
-        if(req.session.name && req.cookies.user_sid) {
+        if(req.session.name) {
             res.redirect('myprofile');
         } else {
             res.render('login', {
@@ -326,7 +330,7 @@ const controller = {
     },
 
     getMyProfile: function (req, res) {
-        if (req.session.name && req.cookies.user_sid) {
+        if (req.session.name) {
             database.findOne(Users, { _id: req.session._id }, {}, function(user) {
                 res.render('myprofile', {
                     layout: 'layouts/main',
@@ -345,7 +349,7 @@ const controller = {
     },
 
     getMyProfileEdit: function (req, res) {
-        if (req.session.name && req.cookies.user_sid) {
+        if (req.session.name) {
             database.findOne(Users, { _id: req.session._id }, {}, function(user) {
                 res.render('editprofile', {
                     layout: 'layouts/main',
@@ -364,7 +368,7 @@ const controller = {
     },
 
     getMyArticles: function (req, res) {
-        if (req.session.name && req.cookies.user_sid) {
+        if (req.session.name) {
             Articles.countDocuments({authorid: {$eq: req.session._id}}, function (err, count) {
                 var perPage = 10;
                 var page = req.query.page || 1;
@@ -396,7 +400,7 @@ const controller = {
     },
 
     getNewArticle: function (req, res) {
-        if (req.session.name && req.cookies.user_sid) {
+        if (req.session.name) {
             res.render('newarticle', {
                 layout: '/layouts/main',
                 title: 'New Articles - DLSU Guide',
@@ -410,7 +414,7 @@ const controller = {
     },
 
     getEditArticle: function (req, res) {
-        if (req.session.name && req.cookies.user_sid) {
+        if (req.session.name) {
             database.findOne(Articles, {_id: req.query.id}, {}, function (article) {
                 if (article.authorid == req.session._id) {
                     res.render('editarticle', {
@@ -422,6 +426,7 @@ const controller = {
                         
                         article_id: article._id,
                         article_title: article.title,
+                        article_image: article.image,
                         article_content: article.content,
                         article_category: article.category,
                         article_published: article.published,

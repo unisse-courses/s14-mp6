@@ -11,18 +11,27 @@
     }
 </script>
 
+<link rel="stylesheet" href="styles/profilestyle.css">
+
 <div class="centered">
-    <button onclick="logout()">Logout</button> <br>
-    <br>
+    <div class="margin-20">
+        <div class="title-box">
+            <h2>Welcome {{name}}!</h2>
+            <button onclick="logout()">Logout</button>
+        </div>
 
-    profile of: {{name}} <br>
-    email: {{email}} <br>
-    <br>
+        <div class="title-box">
+            {{email}}
+        </div>
 
-    bio: {{bio}} <br>
-    <br>
+        <h3>BIO</h3>
+        <div class="bio">
+            {{bio}}
+        </div>
 
-    <a href="/editprofile">edit profile</a> <br>
-
-    <a href="/myarticles">My Articles</a> <br>
+        <div class="button-box">
+            <a class="button-link" href="/editprofile">edit profile</a>
+            <a class="button-link" href="/myarticles">My Articles</a>
+        </div>
+    </div>
 </div>

@@ -7,11 +7,11 @@
     <!-- Dimmer + Vignette -->
     <div class="image-dimmer"></div>
     <!-- Featured Image  -->
-    <img src="img/articles/">
+    <img src="{{article.image}}">
     <!-- Featured Text -->
     <div class="text-block text-light centered">
         <h4>{{article.title}}</h4>
-        <p>{{dateFormat this.date "MMMM Do, YYYY"}} • {{article.author}}</p>
+        <p>{{dateFormat this.date "MMMM Do, YYYY"}} • {{author}}</p>
         <!--
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         -->

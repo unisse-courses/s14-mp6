@@ -11,7 +11,11 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ 
+  extended: true,
+  parameterLimit: 100000,
+  limit: '50mb',
+}));
 
 app.set('view engine', 'hbs');
 
@@ -31,21 +35,16 @@ app.listen(port, function() {
 });
 
 hbs.registerHelper('dateFormat', require('handlebars-dateformat'));
-
 hbs.registerHelper('repeat', require('handlebars-helper-repeat'));
-
 hbs.registerHelper("add", function (a, b) {
   return parseInt(a) + b;
 });
-
 hbs.registerHelper("minus", function (a, b) {
   return parseInt(a) - b;
 });
-
 hbs.registerHelper('equals', function (arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
-
 hbs.registerHelper('each_upto', function (ary, max, options) {
   if (!ary || ary.length == 0)
     return options.inverse(this);

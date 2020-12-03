@@ -111,10 +111,11 @@ const userController = {
     },
 
     deleteUser: function (req, res) {
-        database.deleteOne(User, {_id: ObjectID(req.session._id)});
-        database.deleteMany(Article, {authorid: ObjectID(req.session._id)});
-        res.status(200).send({url: 'home'});
-        req.session.destroy();
+        database.deleteMany(Article, {authorid: req.session._id}, function() {
+            database.deleteOne(User, {_id: ObjectID(req.session._id)});
+            req.session.destroy();
+            res.status(200).send({url: '/home'});
+        });
     },
 }
 

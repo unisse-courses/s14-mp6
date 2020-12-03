@@ -17,6 +17,24 @@
             });
         }
     };
+
+    function display(input) {
+        var image = document.getElementById("imagepreview");
+        var reader = new FileReader();
+        var base64;
+        reader.onload = function(e) {
+            document.getElementById("uploadstatus").innerHTML = "uploading...";
+
+            base64 = e.target.result
+            image.src = base64;
+
+            $.post('/imageupload', {image: base64} , function(response, status) {
+                document.getElementById("uploadstatus").innerHTML = "uploaded!";
+            });
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
 </script>
 
 <div class="centered">
@@ -24,6 +42,10 @@
     <form>
         Title<br>
         <input id="title" type="text"><br>
+        Image<br>
+        <input type="file" accept="image/*" onchange="display(this)"><br>
+        <img height="300px" id="imagepreview"><br>
+        <div id="uploadstatus"></div><br>
         Content<br>
         <textarea rows="40" cols="100" id="content"></textarea><br>
         Category<br>

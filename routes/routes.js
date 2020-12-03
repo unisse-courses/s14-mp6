@@ -44,9 +44,7 @@ var upload = multer({ storage: storage })
 var email_upload = multer({ storage: email_storage })
 // var home_upload = multer({ home_storage: home_storage })
 
-//Init Cookie and Body Parser
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 //Init Sessions
 app.use(session({
@@ -59,13 +57,6 @@ app.use(session({
     maxAge: 1000 * 60 * 60 * 24, // 1 Day.
   }
 }));
-/*
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.email) {
-    res.clearCookie('user_sid');
-  }
-  next();
-});*/
 
 //pages
 
@@ -101,11 +92,11 @@ app.get('/editarticle', controller.getEditArticle);
 app.post('/editarticle', articleController.editArticle);
 app.post('/deletearticle', articleController. deleteArticle);
 
+app.post('/imageupload', articleController.postImage);
+
 app.get('/404', controller.get404);
-/*
 app.use((req, res, next) => {
-    res.status(404).redirect('404');
+  res.status(404).redirect("/404");
 });
-*/
 // enables to export app object when called in another .js file
 module.exports = app;
