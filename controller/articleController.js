@@ -13,11 +13,27 @@ const articleController = {
             if (article) {
                 database.findOne(User, {_id: article.authorid}, {}, function(user) {
                     if (article.published) {
+                        var loggedin;
+                        var name;
+
+                        if (req.session.name) {
+                            loggedin = true;
+                            name = req.session.name;
+                        } else {
+                            loggedin = false;
+                            name = null;
+                        }
+
                         res.render('article', {
                             layout: '/layouts/main',
                             title: article.title + ' - DLSU Guide',
+
+                            loggedin: loggedin,
+                            name: name,
+
                             article: article,
-                            author: user.name
+                            author: user.name,
+                            isEditor: req.session.isEditor,
                         });
                     }
                     else {
@@ -81,6 +97,26 @@ const articleController = {
 
         console.log("image updated");
         console.log(req.session.image.substring(0, 20))
+    },
+
+    updateFeatured: function (req, res) {
+        database.findOne(Article, {_id: req.body.id}, {}, function(article) {
+            if (article) {
+                var newArticle = {
+                    title: article.title,
+                    image: article.image,
+                    content: article.content,
+                    category: article.category,
+                    authorid: article.authorid,
+                    date: article.date,
+                    published: article.published,
+                    featured: req.body.newStatus
+                }
+
+                database.updateOne(Article, {_id: req.body.id}, newArticle);
+                res.status(200).send();
+            }
+        });        
     }
 }
 

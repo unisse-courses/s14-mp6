@@ -93,6 +93,7 @@ app.post('/editarticle', articleController.editArticle);
 app.post('/deletearticle', articleController. deleteArticle);
 
 app.post('/imageupload', articleController.postImage);
+app.post('/updateFeatured', articleController.updateFeatured);
 
 app.get('/404', controller.get404);
 app.use((req, res, next) => {

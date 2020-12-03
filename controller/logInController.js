@@ -33,6 +33,7 @@ const logIncontroller = {
                         req.session.name = user.name;
                         req.session.email = user.email;
                         req.session._id = user._id;
+                        req.session.isEditor = user.userTypeEditor;
 
                         res.status('200').send(redirect);
                     }
@@ -49,7 +50,7 @@ const logIncontroller = {
 
     postLogout: function (req, res) {
         var response = {
-            success: req.session.name && req.cookies.user_sid,
+            success: req.session.name || false,
             url: 'login'
         };
         

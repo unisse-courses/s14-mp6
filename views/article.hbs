@@ -1,6 +1,29 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/styles/articlestyle.css">
 </head>
+
+<script>
+    function removeFeatured() {
+        document.getElementById('status').innerHTML = "updating...";
+        var id = document.getElementById("id").innerHTML;
+        $.post('updateFeatured', {id: id, newStatus: false}, function(data, status) {
+            $('#remove').css('display', 'none');
+            $('#add').css('display', 'block');
+            document.getElementById('status').innerHTML = "updated!";
+        });
+    };
+
+    function addFeatured() {
+        document.getElementById('status').innerHTML = "updating...";
+        var id = document.getElementById("id").innerHTML;
+        $.post('updateFeatured', {id: id, newStatus: true}, function(data, status) {
+            $('#add').css('display', 'none');
+            $('#remove').css('display', 'block');
+            document.getElementById('status').innerHTML = "updated!";
+        });
+    };
+</script>
+
 <!-- Featured Article Splash -->
 <div class="image-box">
 <a href="#">
@@ -25,9 +48,22 @@
 
 <!-- Article -->
 <div class="article-wrapper">
-<div class="article">
-<p>
-    {{article.content}}
-</p>
-</div>
+    <div id="id" style="display: none;">{{article._id}}</div>
+    <div class="article">
+        <p>
+            {{article.content}}
+        </p>
+    </div>
+    {{#if isEditor}}
+    <div class="editor-options">
+        {{#if article.featured}}
+        <button id="remove" type="button" onclick="removeFeatured()">remove from featured</button>
+        <button id="add" type="button" style="display: none;" onclick="addFeatured()">add to featured</button>
+        {{else}}
+        <button id="remove" type="button" style="display: none;" onclick="removeFeatured()">remove from featured</button>
+        <button id="add" type="button" onclick="addFeatured()">add to featured</button>
+        {{/if}}
+        <div id="status"></div>
+    </div>
+    {{/if}}
 </div>

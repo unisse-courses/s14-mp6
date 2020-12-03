@@ -35,7 +35,8 @@ const userController = {
                         name: name,
                         email: email,
                         password: hash,
-                        bio: "No Bio"
+                        bio: "No Bio",
+                        userTypeEditor: false
                     }
                     
                     database.insertOne(User, newUser, (result) => {
@@ -57,7 +58,8 @@ const userController = {
                     name: req.body.name,
                     email: user.email,
                     password: user.password,
-                    bio: req.body.bio
+                    bio: req.body.bio,
+                    userTypeEditor: user.userTypeEditor
                 };
     
                 database.updateOne(User, filter, user_details);
@@ -73,7 +75,8 @@ const userController = {
                             name: req.body.name,
                             email: req.body.email,
                             password: userpass.password,
-                            bio: req.body.bio
+                            bio: req.body.bio,
+                            userTypeEditor: user.userTypeEditor
                         };
     
                         database.updateOne(User, filter, user_details);
@@ -97,7 +100,8 @@ const userController = {
                             name: user.name,
                             email: user.email,
                             password: hash,
-                            bio: user.bio
+                            bio: user.bio,
+                            userTypeEditor: user.userTypeEditor
                         };
 
                         database.updateOne(User, filter, user_details);
