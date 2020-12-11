@@ -1,4 +1,4 @@
-const { envSessionKey } = require('./config.js');
+const { envSessionKey } = require('../config.js');
 
 // import module `express`
 const express = require('express');

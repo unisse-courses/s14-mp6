@@ -3,6 +3,7 @@ const Article = require('./models/articles.js')
 const database = require('./models/db.js');
 
 const bcrypt = require('bcrypt');
+const { deleteArticle } = require('./controller/articleController.js');
 
 database.connect();
 
@@ -17,6 +18,14 @@ const deleteUsers = () => {
         });
     });
 };
+const deleteArticles = () => {
+    return new Promise((resolve, reject) => {
+        database.deleteMany(Article, {}, () => {
+            console.log('All article data deleted');
+            resolve();
+        });
+    });
+}
 const addTestAccount = () => {
     return new Promise((resolve, reject) => {
         bcrypt.hash(testAccountPassword, 10, (err, hash) => {
@@ -57,6 +66,7 @@ const addAdminAccount = () => {
 const addData = async() => {
     console.log("\x1b[32m[RESETTING DATABASE...]\x1b[0m");
     await deleteUsers();
+    await deleteArticles();
     await addTestAccount();
     await addAdminAccount();
     console.log("\x1b[32m[RESET COMPLETE]\x1b[0m");
