@@ -7,5 +7,6 @@
 
 ### setup
 1. run ```npm install```
-2. run ```node index```
-3. open [localhost:3000](localhost:3000) in browser
+1. run ```node addData```
+1. run ```node index```
+1. open [localhost:3000](http://localhost:3000) in browser
