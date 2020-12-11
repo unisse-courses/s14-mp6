@@ -1,3 +1,5 @@
+const { envSessionKey } = require('./config.js');
+
 // import module `express`
 const express = require('express');
 const multer = require('multer');
@@ -49,7 +51,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //Init Sessions
 app.use(session({
   key: 'user_sid', //user session id
-  secret: 'initative',
+  secret: envSessionKey,
   resave: false,
   saveUninitialized: true,
   store: database.sessionStore,

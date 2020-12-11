@@ -1,3 +1,5 @@
+const { envPort } = require('./config.js');
+
 const express = require('express');
 const hbs = require('hbs');
 const path = require('path');
@@ -8,7 +10,7 @@ const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
 
 const app = express();
-const port = 3000;
+const port = envPort;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 
