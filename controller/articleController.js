@@ -95,8 +95,8 @@ const articleController = {
         
         res.status(200).send();
 
-        console.log("image updated");
-        console.log(req.session.image.substring(0, 20))
+        //console.log("image updated");
+        //console.log(req.session.image.substring(0, 20))
     },
 
     updateFeatured: function (req, res) {
