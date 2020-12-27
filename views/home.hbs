@@ -3,28 +3,33 @@
 
 <div class="card-wrapper">
 <div class="feed">
-    {{#each featured}}<div class="card card-has-margin">
-        <a href="/article?id={{_id}}">
-            <!-- Article Image -->
-            <div class="card-img">
-                <!-- Dimmer + Vignette -->
-                <div class="image-dimmer"></div>
-                <img src="{{this.image}}">
-                <!-- Tag -->
-                <div class="tag-wrapper">
-                    <a href="{{this.category}}" class="tag-block"><p>{{this.category}}</p></a>
+    {{#if featuredEmpty}}
+        No Featured Articles
+    {{else}}
+        {{#each featured}}<div class="card card-has-margin">
+            <a href="/article?id={{_id}}">
+                <!-- Article Image -->
+                <div class="card-img">
+                    <!-- Dimmer + Vignette -->
+                    <div class="image-dimmer"></div>
+                    <img src="{{this.image}}">
+                    <!-- Tag -->
+                    <div class="tag-wrapper">
+                        <a href="{{this.category}}" class="tag-block"><p>{{this.category}}</p></a>
+                    </div>
                 </div>
-            </div>
-            <!-- Article Description -->
-            <div class="card-container">
-                <div class="text-block text-dark">
-                    <h4>{{this.title}}</h4>
-                    <p>{{dateFormat this.date "MMMM Do, YYYY"}} • {{this.author}}</p>
-                    <p>{{this.content}}...</p>
+                <!-- Article Description -->
+                <div class="card-container">
+                    <div class="text-block text-dark">
+                        <h4>{{this.title}}</h4>
+                        <p>{{dateFormat this.date "MMMM Do, YYYY"}} • {{this.author}}</p>
+                        <p>{{this.content}}...</p>
+                    </div>
                 </div>
-            </div>
-        </a>
-    </div>{{/each}}
+            </a>
+        </div>
+        {{/each}}
+    {{/if}}
 </div>
 </div>
 

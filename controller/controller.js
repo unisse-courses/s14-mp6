@@ -34,6 +34,8 @@ const controller = {
                 });
                 
                 database.findMany(Articles, {featured: true}, {}, function (featuredArray) {
+                    var featuredEmpty = featuredArray.length == 0 ? true : false;
+                    
                     var featuredArrayAuthorNames = [];
                     featuredArray.forEach(function(doc) {
                         var newArticle = {
@@ -66,7 +68,8 @@ const controller = {
     
                         loggedin: loggedin,
                         name: name,
-    
+                        
+                        featuredEmpty: featuredEmpty,
                         featured: featuredArrayAuthorNames,
                         articles: articleArrayAuthorNames,
                         
