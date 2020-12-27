@@ -1,11 +1,4 @@
 const mongoose = require('mongoose');
-const databaseURL = 'mongodb://localhost:27017/DLSUGuidedb';
-
-const options = { useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false };
-
-mongoose.connect(databaseURL, options);
 
 const articleSchema = new mongoose.Schema({
     title: { 
