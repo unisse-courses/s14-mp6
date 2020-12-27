@@ -17,10 +17,14 @@ const database = {
         connects to database
     */
     connect: function () {
-        mongoose.connect(url, options, function (error) {
+        /*mongoose.connect(url, options, function (error) {
             if (error) throw error;
             console.log('Connected to: ' + url);
-        });
+        });*/
+        mongoose
+        .connect(url, options)
+        .then(() => console.log( 'Database Connected' ))
+        .catch(err => console.log( err ));
     },
 
     /*
