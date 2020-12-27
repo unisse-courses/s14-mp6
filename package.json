@@ -23,10 +23,10 @@
     "multer-gridfs-storage": "^4.2.0",
     "nodemailer": "^6.4.11",
     "partials": "^0.1.0",
-    "supervisor": "^0.12.0"
+    "supervisor": "^0.12.0",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0"
   },
   "scripts": {
     "start": "node index",
