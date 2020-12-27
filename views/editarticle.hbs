@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="styles/editarticlestyle.css">
+
 <script>
     function submitArticle() {
         document.getElementById('error').innerHTML = "";
@@ -40,40 +42,53 @@
                 document.getElementById("uploadstatus").innerHTML = "uploaded!";
             });
         }
-        
+
         reader.readAsDataURL(input.files[0]);
     }
 </script>
 
-<div class="centered">
-    Edit Article<br><br>
-    <form>
-        <div style="display: none;">
-            Article id:
-            <div id="id">{{article_id}}</div><br>
-        </div>
-        Title<br>
-        <input id="title" type="text" value="{{article_title}}"><br>
-        Image<br>
-        <input type="file" accept="image/*" onchange="display(this)"><br>
-        <img height="300px" id="imagepreview" src="{{article_image}}"><br>
-        <div id="uploadstatus"></div><br>
-        Content<br>
-        <textarea rows="40" cols="100" id="content">{{article_content}}</textarea><br>
-        Category<br>
-        <select id="category">
-            <option value="classrooms"{{#equals article_category 'classrooms'}} selected="selected"{{/equals}}>Classrooms</option>
-            <option value="offices"{{#equals article_category 'offices'}} selected="selected"{{/equals}}>Offices</option>
-            <option value="food"{{#equals article_category 'food'}} selected="selected"{{/equals}}>Food</option>
-        </select><br>
-        Publish<br>
-        <input id="published" type="checkbox"{{#if article_published}} checked{{/if}}><br>
-        <br>
+<div>
 
-        <button type="button" onclick="submitArticle()">Save</button><br>
-        <br>
-        <div id="error"></div>
-        <br>
-        <button type="button" onclick="deleteArticle()">Delete</button>
-    </form>
+  <!-- Divider -->
+  <div class="divider centered"><p>Edit Article</p></div>
+
+  <form class="new-article-wrapper">
+      <div style="display: none;">
+          Article id:
+          <div id="id">{{article_id}}</div><br>
+      </div>
+      <p>Title</p>
+      <input id="title" class="new-article-input" type="text" value="{{article_title}}"><br>
+      <p>Image</p>
+      <input type="file" class="new-article-input" accept="image/*" onchange="display(this)"><br>
+      <img height="300px" id="imagepreview" src="{{article_image}}"><br>
+      <div id="uploadstatus"></div><br>
+      <p>Content</p>
+      <textarea rows="40" class="new-article-input" cols="100" id="content">{{article_content}}</textarea><br>
+      <p>Category</p>
+      <select id="category" class="new-article-input">
+          <option value="classrooms"{{#equals article_category 'classrooms'}} selected="selected"{{/equals}}>Classrooms</option>
+          <option value="offices"{{#equals article_category 'offices'}} selected="selected"{{/equals}}>Offices</option>
+          <option value="food"{{#equals article_category 'food'}} selected="selected"{{/equals}}>Food</option>
+      </select><br>
+      <p>Publish?</p>
+      <input id="published" class="new-article-input left-align" type="checkbox"{{#if article_published}} checked{{/if}}><br>
+      <br>
+<!--
+      <div class="new-article-button-wrapper">
+        <button type="button" class="new-article-button" onclick="submitArticle()">Save</button>
+      </div>
+
+      <div class="new-article-button-wrapper">
+        <button type="button" class="red new-article-button" onclick="deleteArticle()">Delete</button>
+      </div>
+-->
+      <div class="edit-profile-button-wrapper">
+        <button type="button" class="red edit-profile-button" onclick="deleteArticle()">Delete</button>
+        <button type="button" class="edit-profile-button" onclick="submitArticle()">Save</button>
+      </div>
+
+      <p class="error-label" id="error"></p>
+
+  </form>
 </div>

@@ -1,7 +1,10 @@
+<link rel="stylesheet" type="text/css" href="styles/profilestyle.css">
+<link rel="stylesheet" type="text/css" href="styles/editprofilestyle.css">
+
 <script>
-    function updateDetails() {        
+    function updateDetails() {
         document.getElementById('detailsmsg').innerHTML = "";
-        
+
         if (document.getElementById('name').value == "" || document.getElementById('email').value == "" || document.getElementById('bio').value == "") {
             document.getElementById('detailsmsg').innerHTML = "Missing Fields!";
         } else {
@@ -44,6 +47,11 @@
         document.getElementById('deleteAccountButton').style.visibility = "hidden";
     };
 
+    function hideConfirm() {
+        document.getElementById('confirm').style.visibility = "hidden";
+        document.getElementById('deleteAccountButton').style.visibility = "visible";
+    };
+
     function deleteAccount() {
         $.post('deleteAccount', {}, function (response, status) {
             window.location = response.url;
@@ -52,39 +60,57 @@
 
 </script>
 
-<div class="centered">
-    <form class="login">
-        <h3>Update Details</h3>
-        Name <br>
-        <input id="name" type="text" value="{{name}}"><br>
-        Email<br>
-        <input id="email" type="text" value={{email}}><br>
-        bio<br>
-        <input id="bio" type="text" value="{{bio}}"><br>
-        <button type="button" onclick="updateDetails()">Update</button>
+<div>
 
-        <p id="detailsmsg"></p>
-    </form>
+  <!-- Divider -->
+  <div class="divider centered"><p>Update Details</p></div>
 
-    <form class="login">
-        <h3>Update Password</h3>
-        Old Password<br>
-        <input id="passwordold" type="text"><br>
-        New Password<br>
-        <input id="passwordnew" type="text"><br>
-        Confirm New Password<br>
-        <input id="passwordconfirm" type="text"><br>
-        <button type="button" onclick="updatePassword()">Update</button>
+  <form class="edit-profile-wrapper">
+      <p>Name</p>
+      <input id="name" class="edit-profile-input" type="text" value="{{name}}"><br>
+      <p>Email</p>
+      <input id="email" class="edit-profile-input" type="text" value={{email}}><br>
+      <p>Bio</p>
+      <input id="bio" class="edit-profile-input" type="text" value="{{bio}}"><br><br>
+      <div class="edit-profile-button-wrapper">
+          <button type="button" class="edit-profile-button" onclick="updateDetails()">Update</button>
+      </div>
+
+      <p id="detailsmsg"></p>
+  </form>
+
+  <!-- Divider -->
+  <div class="divider centered"><p>Update Password</p></div>
+
+    <form class="edit-profile-wrapper">
+        <p>Old Password</p>
+        <input id="passwordold" class="edit-profile-input" type="text"><br>
+        <p>New Password</p>
+        <input id="passwordnew" class="edit-profile-input" type="text"><br>
+        <p>Confirm New Password</p>
+        <input id="passwordconfirm" class="edit-profile-input" type="text"><br><br>
+        <div class="edit-profile-button-wrapper">
+          <button type="button" class="edit-profile-button" onclick="updatePassword()">Update</button>
+        </div>
 
         <p id="passwordmsg"></p>
     </form>
 
-    <div id="deleteAccountButton">
-        <button type="button" onclick="showConfirm()">Delete Account</button>
+    <!-- Divider -->
+    <div class="divider centered"><p></p></div>
+
+    <div id="deleteAccountButton" class="edit-profile-button-wrapper">
+        <button type="button" class="red edit-profile-button" onclick="showConfirm()">Delete Account</button>
     </div>
 
-    <div id="confirm" class="hidden">
-        Delete account? All your articles will also be deleted. This cannot be undone.<br>
-        <button type="button" onclick="deleteAccount()">Confirm</button>
+    <div id="confirm" class="hidden centered">
+        <p class="centered delete-label"> Delete account? All your articles will also be deleted. <strong>This cannot be undone.</strong> </p>
+        <div class="edit-profile-button-wrapper">
+          <button type="button" class="gray edit-profile-button" onclick="hideConfirm()">Cancel</button>
+          <button type="button" class="red edit-profile-button" onclick="deleteAccount()">Confirm</button>
+        </div>
     </div>
+
+    <!-- Divider -->
+    <div class="divider centered"><p></p></div>
 </div>

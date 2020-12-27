@@ -1,9 +1,19 @@
-<div class="centered">
-    My Articles<br>
-    <a href="/newarticle">New Article</a><br>
-    <br>
-    
-    <table border="solid black 1px" width="100%">
+<link rel="stylesheet" href="styles/myarticlesstyle.css">
+
+<div class="myarticles">
+
+  <div class="title-box divider centered">
+      <p>My Articles</p>
+      <div class="aligner edit-profile-logout-wrapper">
+        <div class="aligner-item--top"></div>
+        <a class="button-link top-button myarticles-button aligner-item" href="/newarticle">+ New Article</a>
+        <div class="aligner-item--bottom"></div>
+      </div>
+  </div>
+
+  <div class="myarticles-wrapper">
+
+    <table class="myarticles-table">
         <tr>
             <td>Title</td>
             <td>Category</td>
@@ -20,7 +30,9 @@
             <td><a href="/editarticle?id={{_id}}">Edit</a></td>
         </tr>
         {{/each}}
+
     </table>
+    {{> pagination}}
 </div>
 
-{{> pagination}}
+<br>

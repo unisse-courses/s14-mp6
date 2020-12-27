@@ -1,0 +1,29 @@
+.pagination-button {
+  padding: .75rem 1.5rem;
+  text-decoration: none;
+  outline: 0;
+  border: 0;
+  background: #8ED8DE;
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: 700;
+  font-size: .875rem;
+  letter-spacing: .25px;
+  transition: .3s ease;
+}
+
+.pagination-button:hover {
+  background: #63CAC6;
+}
+
+.page-item {
+  border: none;
+}
+
+.active {
+  background: none;
+}
+
+.pagination-box {
+  margin-bottom: 1em;
+}

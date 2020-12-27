@@ -1,0 +1,100 @@
+/* Article */
+.edit-profile-wrapper {
+  width: calc(70% - 34px);
+  max-width: 1128px;
+  margin: 0 auto;
+
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin: auto;
+}
+
+.edit-profile {
+  margin: auto;
+}
+
+.edit-profile p {
+  display: block;
+  margin: 0 0 .5rem;
+  font-weight: 700;
+  letter-spacing: .2px;
+  font-size: .875rem;
+}
+
+.edit-profile-input {
+  padding: .75rem .875rem;
+  border-radius: 4px;
+  outline: 0;
+  color: #212121;
+  font-size: .875rem;
+  width: 100%;
+  border: .063rem solid #F0F0F0;
+  transition: 0.3s ease;
+}
+
+.edit-profile-input:hover {
+  border: .075rem solid #63CAC6;
+}
+
+.edit-profile-button {
+  width: 20%;
+  padding: .75rem 1.5rem;
+  margin: .5rem 0 0;
+  outline: 0;
+  border: 0;
+  background: #8ED8DE;
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: 700;
+  font-size: .875rem;
+  letter-spacing: .25px;
+  transition: .3s ease;
+}
+
+.edit-profile-button:hover {
+  background: #63CAC6;
+}
+
+.red {
+  background: #db5856;
+}
+
+.red:hover {
+  background: #c44240;
+}
+
+.gray {
+  background: #FFFFFF;
+  color: #3A3A3A;
+}
+
+.gray:hover {
+  background: #FFFFFF;
+  color: #3A3A3A;
+  opacity: 0.7;
+}
+
+.edit-profile-button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-profile-button-wrapper .edit-profile-button {
+  margin-left: .25rem;
+  margin-right: .25rem;
+  text-decoration: none;
+}
+
+.delete-label {
+  text-align: center;
+  color: #db5856;
+}
+
+.hide {
+  display: none;
+}

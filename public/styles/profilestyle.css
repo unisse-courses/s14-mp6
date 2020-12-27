@@ -541,10 +541,11 @@ a {
   height: 10%;
 }
 
-.buttons-box {
+.button-box {
+  height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: center;
 }
 
 .button-link {
@@ -552,4 +553,92 @@ a {
   background-color: blue;
   border-radius: 10px;
   color: wheat
+}
+
+/*new*/
+.profile-wrapper {
+  width: calc(70% - 34px);
+  max-width: 1128px;
+  margin: 0 auto;
+
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin: auto;
+}
+
+.profile {
+  margin: auto;
+}
+
+.profile-welcome-wrapper {
+  display: block;
+  text-transform: uppercase;
+  font-family: myriad-pro, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.profile-welcome-wrapper p {
+  margin-left: 16px;
+}
+
+.profile-button {
+  padding: .75rem 1.5rem;
+  /*margin: .5rem 0 0;*/
+  outline: 0;
+  border: 0;
+  background: #8ED8DE;
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: 700;
+  font-size: .875rem;
+  letter-spacing: .25px;
+  transition: .3s ease;
+}
+
+.profile-button:hover {
+  background: #63CAC6;
+}
+
+.logout-button {
+  margin-right: 16px;
+}
+
+.bottom-button {
+  margin-left: .25rem;
+  margin-right: .25rem;
+  text-decoration: none;
+}
+
+.profile-element p {
+  padding: .75rem .875rem;
+  border-radius: 4px;
+  outline: 0;
+  color: #212121;
+  font-size: .875rem;
+  border: .063rem solid #F0F0F0;
+  word-wrap: break-word;
+}
+
+.aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aligner-item {
+}
+
+.aligner-item--top {
+  align-self: flex-start;
+}
+
+.aligner-item--bottom {
+  align-self: flex-end;
 }

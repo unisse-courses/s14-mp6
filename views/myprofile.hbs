@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="styles/profilestyle.css">
+
 <script>
     function logout() {
         var data = {
@@ -11,27 +13,39 @@
     }
 </script>
 
-<link rel="stylesheet" href="styles/profilestyle.css">
+<div>
 
-<div class="centered">
-    <div class="margin-20">
-        <div class="title-box">
-            <h2>Welcome {{name}}!</h2>
-            <button onclick="logout()">Logout</button>
-        </div>
-
-        <div class="title-box">
-            {{email}}
-        </div>
-
-        <h3>BIO</h3>
-        <div class="bio">
-            {{bio}}
-        </div>
-
-        <div class="button-box">
-            <a class="button-link" href="/editprofile">edit profile</a>
-            <a class="button-link" href="/myarticles">My Articles</a>
+    <div class="title-box divider centered">
+        <p>Welcome {{name}}!</p>
+        <div class="aligner edit-profile-logout-wrapper">
+          <div class="aligner-item--top"></div>
+          <button class="logout-button profile-button aligner-item" onclick="logout()">Logout</button>
+          <div class="aligner-item--bottom"></div>
         </div>
     </div>
+
+    <div class="profile-wrapper">
+      <div class="profile-label">
+          <p>Email</p>
+      </div>
+      <div class="profile-element">
+          <p>{{email}}</p>
+      </div>
+
+      <div class="profile-label">
+          <p>Bio</p>
+      </div>
+      <div class="profile-element">
+          <p>{{bio}}</p>
+      </div>
+
+      <div class="button-box">
+          <a class="button-link bottom-button profile-button" href="/editprofile">Edit Profile</a>
+          <a class="button-link bottom-button profile-button" href="/myarticles">My Articles</a>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="divider centered"><p></p></div>
 </div>

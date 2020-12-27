@@ -1,0 +1,35 @@
+*{
+    transition: all 0.6s;
+}
+
+.error{
+  padding: 250px;
+  font-family: 'myriad-pro', sans-serif;
+  color: #888;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.error h1{
+  font-family: 'myriad-pro', sans-serif;
+  font-size: 50px;
+  display: inline-block;
+  padding-right: 12px;
+  animation: type .5s alternate infinite;
+}
+
+.error a {
+  color: #63cac6;
+  text-decoration: none;
+}
+
+.error a:hover {
+  color: #93d8e4;
+  text-decoration: none;
+}
+
+@keyframes type{
+	  from{box-shadow: inset -3px 0px 0px #888;}
+	  to{box-shadow: inset -3px 0px 0px transparent;}
+}
