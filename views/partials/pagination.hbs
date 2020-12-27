@@ -2,7 +2,6 @@
 
 <div class="pb-5">
     <div class="pagination-box">
-
         <!-- previous button -->
         {{#equals current 1}}
         {{else}}
@@ -13,6 +12,8 @@
             </div>
         {{/equals}}
 
+    {{#equals 0 pages}}
+    {{else}}
         <!-- page buttons -->
         {{#repeat count=pages start=1}}
         <div class="page-item {{#equals current @index}}active{{/equals}}">
@@ -37,5 +38,6 @@
                 </a>
             </div>
         {{/equals}}
+    {{/equals}}
     </div>
 </div>
