@@ -10,7 +10,7 @@
 1. run ```npm install```
 1. run ```node addData```
 1. run ```node index```
-2. open [localhost:\<port_configured\>](http://localhost:) in browser
+2. open <span style="text-decoration: underline">```localhost:<port_configured>```</span>in browser
 
 ### heroku app
 [https://ccapdev-s14-mp6.herokuapp.com](https://ccapdev-s14-mp6.herokuapp.com)
