@@ -57,11 +57,15 @@
     {{#if isEditor}}
     <div class="editor-options">
         {{#if article.featured}}
-        <button id="remove" type="button" onclick="removeFeatured()">remove from featured</button>
-        <button id="add" type="button" style="display: none;" onclick="addFeatured()">add to featured</button>
+        <div class="article-featured-wrapper">
+          <button id="remove" class="red article-featured-button" type="button" onclick="removeFeatured()">remove from featured</button>
+          <button id="add" class="article-featured-button "type="button" style="display: none;" onclick="addFeatured()">add to featured</button>
+        </div>
         {{else}}
-        <button id="remove" type="button" style="display: none;" onclick="removeFeatured()">remove from featured</button>
-        <button id="add" type="button" onclick="addFeatured()">add to featured</button>
+        <div class="article-featured-wrapper">
+          <button id="remove" class="red article-featured-button" type="button" style="display: none;" onclick="removeFeatured()">remove from featured</button>
+          <button id="add" class="article-featured-button" type="button" onclick="addFeatured()">add to featured</button>
+        </div>
         {{/if}}
         <div id="status"></div>
     </div>

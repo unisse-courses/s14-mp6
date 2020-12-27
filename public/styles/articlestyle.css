@@ -252,7 +252,7 @@ a {
 }
 
 .image-box {
-    height: calc(100vh - 180px);
+    height: calc(60vh - 180px);
     position: relative;
     margin: auto;
     overflow: hidden;
@@ -282,6 +282,7 @@ a {
 .article-wrapper {
   background-color: white;
   width: 66%;
+  min-height: 80%;
   padding: 16px;
   margin: auto;
 }
@@ -440,4 +441,39 @@ a {
   color: white;
   display: inline-block;
   vertical-align:top;
+}
+
+.article-featured-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-featured-button {
+  text-transform: uppercase;
+  width: 20%;
+  padding: .75rem 1.5rem;
+  margin: .5rem 0 0;
+  outline: 0;
+  border: 0;
+  background: #96DECA;
+  border-radius: 4px;
+  color: #FFF;
+  font-weight: 700;
+  font-size: .875rem;
+  letter-spacing: .25px;
+  transition: .3s ease;
+}
+
+.article-featured-button:hover {
+  background: #84D8BA;
+}
+
+
+.red {
+  background: #db5856;
+}
+
+.red:hover {
+  background: #c44240;
 }
