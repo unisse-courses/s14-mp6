@@ -11,7 +11,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "express-validator": "^6.6.1",
-    "handlebars": "^4.7.6",
+    "handlebars": "^4.7.7",
     "handlebars-dateformat": "^1.1.1",
     "handlebars-helper-repeat": "^2.0.0",
     "handlebars-helpers": "^0.10.0",
